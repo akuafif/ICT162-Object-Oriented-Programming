@@ -1,6 +1,6 @@
 import tkinter as tk
-from tkinter import messagebox
-from tkinter import *
+from tkinter import Frame, IntVar,Radiobutton, Button, Label, scrolledtext
+from tkinter.constants import DISABLED, NORMAL, END
 from Question import Question
 
 class MainWindow(tk.Tk):
@@ -8,8 +8,12 @@ class MainWindow(tk.Tk):
         tk.Tk.__init__(self)
         
         self._questionBank = None
-        self._correctAnswer = 0
+        self._questionBank = Question()
 
+        self.loadUIElements()
+        self.spawnMiddleScreen()
+
+    def loadUIElements(self):
         self.title('Python Quiz - Done by Muhammad Afif Bin Hashim')
 
         self._window = Frame(self)
@@ -21,28 +25,24 @@ class MainWindow(tk.Tk):
         self._answer = IntVar()
         self._answer.set(0)
         self._radTrue = Radiobutton(self._window, text="Option 1", padx = 20, variable=self._answer, value=1)
-        self._radTrue.grid(row=2,column=0, padx=5, pady=5,rowspan=1, columnspan=2,  sticky="n")
+        self._radTrue.grid(row=2,column=0, padx=5, pady=2,rowspan=1, columnspan=2,  sticky="n")
         self._radFalse = Radiobutton(self._window, text="Option 2", padx = 20, variable=self._answer, value=2)
-        self._radFalse.grid(row=3,column=0, padx=5, pady=5,rowspan=1, columnspan=2,  sticky="n")
+        self._radFalse.grid(row=3,column=0, padx=5, pady=2,rowspan=1, columnspan=2,  sticky="n")
 
         self._btnSubmit = Button(self._window, text="Submit",command=self.submitAnswer)
-        self._btnSubmit.grid(row=4,column=0, padx=5, pady=5, sticky="ne") 
+        self._btnSubmit.grid(row=4,column=0, padx=1, pady=2, sticky="ne") 
         self._btnSubmit['state'] = tk.DISABLED
         self._btnNext = Button(self._window, text="Next",command=self.nextQuestion)
-        self._btnNext.grid(row=4,column=1, padx=5, pady=5, sticky="nw") 
+        self._btnNext.grid(row=4,column=1, padx=1, pady=2, sticky="nw") 
         self._btnNext['state'] = tk.DISABLED
 
-        self._textArea = Text(self._window, height = 11, width = 60, state='normal')
+        self._textArea = scrolledtext.ScrolledText(self._window, width=55, height=8, wrap=tk.WORD, state='normal')
         self._textArea.insert(END, f'Click start to begin quiz.\n')
         self._textArea.grid(row=5,column=0, columnspan=2, padx=5, pady=5, sticky="nwe") 
         self._textArea.config(state = DISABLED)
-
         self._window.grid(row = 0, column = 0, sticky = "n")
-        
-        self.spawnMiddleScreen()
 
-        self.grid_columnconfigure(0, weight = 1)
-        self.grid_rowconfigure(0, weight = 1)
+        self.resizable(False, False) 
 
     def spawnMiddleScreen(self):
         # Gets the requested values of the height and width.
@@ -62,7 +62,6 @@ class MainWindow(tk.Tk):
         self._btnStart.configure(state = DISABLED)
         self._btnSubmit.configure(state = NORMAL)
 
-        self._questionBank = Question()
         self._textArea.config(state = NORMAL)
         self._textArea.delete('1.0', END)
         self._textArea.insert(END, 'Select answer and click submit.\n')
@@ -72,7 +71,7 @@ class MainWindow(tk.Tk):
         self._radTrue.configure(text = 'True')
         self._radFalse.configure(text = 'False')
         
-        self._lblQuestion.configure(text = self._questionBank.getQuestion())
+        self._lblQuestion.configure(text = self._questionBank.getNewQuestion())
         self._answer.set(0)
 
     def submitAnswer(self):
@@ -83,9 +82,8 @@ class MainWindow(tk.Tk):
 
             answer = True if self._answer.get() == 1 else False
 
-            if answer == self._questionBank.getAnswer():
-                self._textArea.insert(END, f'Question {self._questionBank.index} correct!\n')
-                self._correctAnswer += 1    
+            if self._questionBank.checkAnswer(answer):
+                self._textArea.insert(END, f'Question {self._questionBank.index} correct!\n') 
             else:
                 self._textArea.insert(END, f'Question {self._questionBank.index} incorrect!\n')
 
@@ -93,7 +91,8 @@ class MainWindow(tk.Tk):
                 self.endOfQuiz()
         else:
             self._textArea.insert(END, f'Please select answer for question {self._questionBank.index}\n')
-                  
+        
+        self._textArea.see(END)
         self._textArea.config(state = DISABLED)
 
     def nextQuestion(self):
@@ -115,12 +114,5 @@ class MainWindow(tk.Tk):
         self._lblQuestion.configure(text = "Question will appear here")
         
         self._textArea.config(state = NORMAL)
-        self._textArea.insert(END, f'Quiz completed. Total {self._correctAnswer} answers correct.\nClick Start to attempt again.\n')
+        self._textArea.insert(END, f'Quiz completed. Total {self._questionBank.correctAnswers} answers correct.\nClick Start to attempt again.\n')
         self._textArea.config(state = DISABLED)
-
-def main():
-    app = MainWindow()
-    app.mainloop()
-
-if __name__ == "__main__":
-    main()
