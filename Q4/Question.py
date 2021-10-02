@@ -33,6 +33,5 @@ class Question:
         return self._questions[self._currentQuestion][1]
 
     def nextQuestion(self) -> str:
-        print('index' , self._index)
         del self._questions[self._currentQuestion]
         return self.getQuestion()
