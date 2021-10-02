@@ -1,4 +1,6 @@
 class Employee:
+    """ Employee class is an abstract superclass that models one employee. """
+    
     def __init__(self, employeeId : int, name : str, workFromHome : bool) -> None:
         self._employeeId = employeeId
         self._name = name
@@ -7,31 +9,43 @@ class Employee:
 
     @property
     def employeeId(self) -> int: 
-        """ Returns the employee ID"""
+        """ Getter method for the employee's ID. \n
+            Returns the employee's ID in int. """
         return self._employeeId
     
     @property
     def name(self) -> str: 
-        """ Returns the employee's name """
+        """ Getter method for the employee's name.\n
+            Returns the employee's name in str. """
         return self._name
     
     @property
     def workFromHome(self) -> bool:
-        """ Returns True if employee is working from home. False otherwise """ 
-        return 'Yes' if self._workFromHome else 'No'
+        """ Getter method for employee workFromHome status.\n
+            Returns True if employee is working from home. False otherwise. """ 
+        return self._workFromHome 
+        
     @workFromHome.setter
     def workFromHome(self, atHome : bool) -> None: 
-        """ Set the employee working from home """
+        """ Setter method for employee workFromHome status.
+
+        Args:
+            atHome (bool): True is employee is working from home. False otherwise. """
         self._workFromHome = atHome
         
     @property
     def leaveBalance(self) -> int:
-        """ Returns the employee's leave balance """
+        """ Getter method for employee's leave balance.\n
+            Returns the employee's leave balance. """
         return self._leaveBalance
     
     def adjustLeave(self, adjustment: int) -> None:
-        """ Adjust the employee leave balance """
+        """ Adjust the employee leave balance.
+
+        Args:
+            adjustment (int): pass a postive value to add. Otherwise, negative value to deduct. """
         self._leaveBalance += adjustment
     
     def __str__(self) -> str:
+        """ Returns the content of the object in readable string. """
         return f'ID: {self._employeeId}\tName: {self._name}\tLeave Balance: {self._leaveBalance}\tWFH: {"Yes" if self._workFromHome else "No "}\t'
