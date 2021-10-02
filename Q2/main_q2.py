@@ -1,10 +1,16 @@
+""" This file contains the main method for Question 2. """
+
 from Company import Company
 from FullTimeEmployee import FullTimeEmployee
 from PartTimeEmployee import PartTimeEmployee
 from Department import Department, Manager
 
-def insertData(companySUSS : Company) -> None:
-    """ Intialising the department and employee objects based on question 2 requirements """
+def insertData(company : Company) -> None:
+    """ Intialising the Department and Employee objects based on Q2c(i) requirements.
+
+    Args:
+        company (Company): The Company object to be associated with the intialised data.
+    """
     deptIT = Department('IT Helpdesk', Manager(106, 'Tom', False, 4), True)
     deptMarketing = Department('Marketing', Manager(201, 'Neil', False, 4), False)
     
@@ -20,10 +26,13 @@ def insertData(companySUSS : Company) -> None:
     deptMarketing.addEmployee(FullTimeEmployee(203, 'Elliot', False, 3))
     deptMarketing.addEmployee(PartTimeEmployee(202, 'Fred', True, 10))
     
-    companySUSS.addDepartment(deptIT)
-    companySUSS.addDepartment(deptMarketing)
+    company.addDepartment(deptIT)
+    company.addDepartment(deptMarketing)
 
 def main() -> None:
+    """ This function will print all the Department and Employee object based on Q2c(i).\n
+        It will also set a new Safe Management to 40% for each Department object and print all the objects again. 
+    """
     companySUSS = Company('SUSS', 'EDU1002334')
     insertData(companySUSS)
      

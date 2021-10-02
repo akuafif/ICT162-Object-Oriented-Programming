@@ -9,20 +9,29 @@ class Employee:
 
     @property
     def employeeId(self) -> int: 
-        """ Getter method for the employee's ID. \n
-            Returns the employee's ID in int. """
+        """ Getter method for the employee's ID.
+
+        Returns:
+            int: The employee's ID. 
+        """
         return self._employeeId
     
     @property
     def name(self) -> str: 
-        """ Getter method for the employee's name.\n
-            Returns the employee's name in str. """
+        """ Getter method for the employee's name.
+
+        Returns:
+            str: The employee's name. 
+        """
         return self._name
     
     @property
     def workFromHome(self) -> bool:
-        """ Getter method for employee workFromHome status.\n
-            Returns True if employee is working from home. False otherwise. """ 
+        """ Getter method for employee's work from home status.
+
+        Returns:
+            bool: True if employee is working from home. False otherwise. 
+        """
         return self._workFromHome 
         
     @workFromHome.setter
@@ -30,22 +39,30 @@ class Employee:
         """ Setter method for employee workFromHome status.
 
         Args:
-            atHome (bool): True is employee is working from home. False otherwise. """
+            atHome (bool): True is employee is working from home. False otherwise. 
+        """
         self._workFromHome = atHome
         
     @property
     def leaveBalance(self) -> int:
-        """ Getter method for employee's leave balance.\n
-            Returns the employee's leave balance. """
+        """ Getter method for employee's leave balance.
+
+        Returns:
+            int: The employee's leave balance.
+        """
         return self._leaveBalance
     
     def adjustLeave(self, adjustment: int) -> None:
         """ Adjust the employee leave balance.
 
         Args:
-            adjustment (int): pass a postive value to add. Otherwise, negative value to deduct. """
+            adjustment (int): Postive value to add. Otherwise, negative value to deduct. 
+        """
         self._leaveBalance += adjustment
     
     def __str__(self) -> str:
-        """ Returns the content of the object in readable string. """
+        """ 
+        Returns:
+            str: The content of the object. 
+        """
         return f'ID: {self._employeeId}\tName: {self._name}\tLeave Balance: {self._leaveBalance}\tWFH: {"Yes" if self._workFromHome else "No "}\t'

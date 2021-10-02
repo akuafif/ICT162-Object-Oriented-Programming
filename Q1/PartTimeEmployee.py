@@ -1,7 +1,7 @@
 from Employee import Employee
 
 class PartTimeEmployee(Employee):
-    """ PartTimeEmployee class is a subclass of Employee """
+    """ PartTimeEmployee class is a subclass of Employee. """
     
     _LEAVE_ENTITLEMENT = {15:5, 30:10, 99:12}
     
@@ -11,12 +11,19 @@ class PartTimeEmployee(Employee):
         super().adjustLeave(self.getLeaveEntitlement())
     
     def getLeaveEntitlement(self) -> int:
-        """ Returns the starting leave balanace for part time employees in int. """
+        """ Returns the starting leave balanace for part time employees.
+
+        Returns:
+            int: The starting leave balance.
+        """
         for hrWorked, leave in type(self)._LEAVE_ENTITLEMENT.items():
             if self._hoursPerWeek <= hrWorked:
                 return leave
         return 12
     
     def __str__(self) -> str:
-        """ Returns the content of the object in readable string. """
+        """ 
+        Returns:
+            str: The content of the object. 
+        """
         return super().__str__() + f' Hours/Week: {self._hoursPerWeek}' 

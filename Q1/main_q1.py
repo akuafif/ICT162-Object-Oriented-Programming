@@ -1,27 +1,30 @@
-""" This file contains the main method for Question 1 """
+""" This file contains the main method for Question 1. """
 
 from PartTimeEmployee import PartTimeEmployee
 from Manager import Manager, FullTimeEmployee
 
 def printEmployees(employees: list) -> None:
-    """ Prints the employee list\n
+    """ Prints the employee list.\n
     Args:
-        employees ([list]): the list that holds all the employee object"""
+        employees ([list]): The list that holds all the Employee object. 
+    """
     for e in employees:
         print(e)
         
 def rotateWFH(employees: list) -> None:
-    """ Rotate all the employee work from home status\n
+    """ Rotate all the employee work from home status.\n
     Args:
-        employees ([list]): the list that holds all the employee object"""
+        employees ([list]): The list that holds all the Employee object. 
+    """
     for e in employees:
         e.workFromHome = not e.workFromHome
 
-def main() -> None:
-    """ This function will print all the employee object based on Q1d(i).\n
-        It will also toggleWFH status for each employee and print all the objects again """
+def insertData() -> list:
+    """ Initialise all the Employee object based on Q1d(i).
 
-    # Intialising all the object based on Q1d(i)
+    Returns:
+        list: The list that holds all the Employee object. 
+    """
     employees = []
     employees.append(FullTimeEmployee(101, 'Jeff', False, 3))
     employees.append(FullTimeEmployee(102, 'Jim', True, 3))
@@ -34,6 +37,13 @@ def main() -> None:
     employees.append(PartTimeEmployee(204, 'Darren', True, 32))
     employees.append(FullTimeEmployee(203, 'Elliot', False, 3))
     employees.append(PartTimeEmployee(202, 'Fred', True, 10))
+    return employees
+
+def main() -> None:
+    """ This function will print all the Employee object based on Q1d(i).\n
+        It will also toggleWFH status for each employee and print all the objects again.
+    """
+    employees = insertData()
     
     print('-' * 80,'Inital Data','-' * 80, sep='\n') 
     printEmployees(employees)

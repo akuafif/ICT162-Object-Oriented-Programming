@@ -2,6 +2,7 @@ from Manager import Manager
 from Employee import Employee
 
 class Department:
+    """ Department class is an abstract superclass that models one department. """
     def __init__(self, name: str, manager: Manager, essentialServices: bool) -> None:
         self._name = name
         self._employees = []
@@ -10,32 +11,59 @@ class Department:
         
     @property
     def name(self) -> str:
+        """ Getter method for department name.
+
+        Returns:
+            str: The department name.
+        """
         return self._name
     
     @property
     def essentialServices(self) -> bool:
+        """ Getter method if department is a essential service department .
+
+        Returns:
+            bool: True if essential service. Otherwise, False.
+        """
         return self._essentialServices
     
     def searchEmployee(self, employeeId: int) -> Employee:
-        """ Returns the Employee object with the matching employeeId. If not found, it returns None. """
+        """ Search an employee by ID.
+
+        Args:
+            employeeId (int): The employee ID to search with.
+
+        Returns:
+            Employee: The Employee object with the matching employeeId. Otherwise, None.
+        """
         for e in self._employees:
             if employeeId == e.employeeId:
                 return e
         return None
     
     def addEmployee(self, newEmployee: Employee) -> bool:
-        """ Accepts an Employee object as parameter and adds it into the _employees list if this employee is not present in the department. 
-        
-        Returns True if the employee is added successfully into the list and is not a Manager and False otherwise """
+        """ Adds an employee into the department. \n
+        ONLY accepts part-time and full-time employee as the parameter.
+
+        Args:
+            newEmployee (Employee): The Employee object to be added into the department.
+
+        Returns:
+            bool: True if the operation is successfully, otherwise False.
+        """
         if self.searchEmployee(newEmployee.employeeId) == None and type(newEmployee) != type(Manager):
             self._employees.append(newEmployee)
             return True
         return False
     
     def safeManagementCheck(self, percentage: float) -> str:
-        """ This method counts all the employees who are WFH and computes the percentage of employee WFH (including the manager)
+        """ 
+        Args:
+            percentage (float): The Safe Management Percentage to check with.
+
+        Returns:
+            str: The report of all the employees who are WFH and computes the percentage of employee WFH (including the manager).
         """
-        
         # Get the amount of employee working from home
         workFromHome = 0
         for e in self._employees:
@@ -59,6 +87,10 @@ class Department:
         return f'No. of Employees working from home: {workFromHome} ({deptPercentageWFH:.1f}%) - {requirementCheck}.'
         
     def __str__(self) -> str:
+        """ 
+        Returns:
+            str: The content of the object. 
+        """
         printStr = f'Department {self._name}\tEssential Services: {"Yes" if self._essentialServices else "No"}'
         printStr += '\n' + f'Manager ' + str(self._manager)
         for e in self._employees:
