@@ -3,7 +3,18 @@ from Employee import Employee
 
 class Department:
     """ Department class is an abstract superclass that models one department. """
+
     def __init__(self, name: str, manager: Manager, essentialServices: bool) -> None:
+        """ Create an Department object with the given paramater and returns it.
+
+        Args:
+            name (str): The department name.
+            manager (Manager): The manager of the department.
+            essentialServices (bool): True is department is an essential service. False otherwise.
+            
+        Returns:
+            Department: The Department object created with the given paramater.
+        """
         self._name = name
         self._employees = []
         self._manager = manager
@@ -36,6 +47,8 @@ class Department:
         Returns:
             Employee: The Employee object with the matching employeeId. Otherwise, None.
         """
+        if self._manager.employeeId == employeeId:
+            return self._manager
         for e in self._employees:
             if employeeId == e.employeeId:
                 return e

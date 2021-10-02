@@ -6,6 +6,17 @@ class PartTimeEmployee(Employee):
     _LEAVE_ENTITLEMENT = {15:5, 30:10, 99:12}
     
     def __init__(self, employeeId: int, name: str, workFromHome: bool, hoursPerWeek: int) -> None:
+        """ Create an PartTimeEmployee object with the given paramater and returns it.
+
+        Args:
+            employeeId (int): Employee's unique ID.
+            name (str): Employee's name.
+            workFromHome (bool): True is employee is working from home. False otherwise.
+            hoursPerWeek (int): The amount of hours per week worked by the employee.
+        
+        Returns:
+            PartTimeEmployee: The PartTimeEmployee object created with the given paramater.
+        """
         super().__init__(employeeId,name,workFromHome)
         self._hoursPerWeek = hoursPerWeek
         super().adjustLeave(self.getLeaveEntitlement())

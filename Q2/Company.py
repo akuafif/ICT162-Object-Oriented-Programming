@@ -2,9 +2,19 @@ from Department import Department
 
 class Company:
     """ Company class is an abstract superclass that models one company. """
+    
     _SAFE_MANAGEMENT_PERCENTAGE = 50.0
     
-    def __init__(self, name: str, uniqueEntityNumber: str) -> None:
+    def __init__(self, name: str, uniqueEntityNumber: str) -> None:        
+        """ Create an Company object with the given paramater and returns it.
+
+        Args:
+            name (str): The company name.
+            uniqueEntityNumber (str): The unique entity number of the company.
+              
+        Returns:
+            Company: The Company object created with the given paramater.
+        """
         self._name = name
         self._uniqueEntityNumber = uniqueEntityNumber
         self._department = []

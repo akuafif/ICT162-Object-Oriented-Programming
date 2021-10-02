@@ -2,6 +2,16 @@ class Employee:
     """ Employee class is an abstract superclass that models one employee. """
     
     def __init__(self, employeeId : int, name : str, workFromHome : bool) -> None:
+        """ Create an Employee object with the given paramater and returns it.
+
+        Args:
+            employeeId (int): Employee's unique ID.
+            name (str): Employee's name.
+            workFromHome (bool): True is employee is working from home. False otherwise.
+        
+        Returns:
+            Employee: The Employee object created with the given paramater.
+        """
         self._employeeId = employeeId
         self._name = name
         self._workFromHome = workFromHome
