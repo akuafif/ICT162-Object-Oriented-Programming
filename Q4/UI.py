@@ -1,14 +1,13 @@
 import tkinter as tk
 from tkinter import Frame, IntVar,Radiobutton, Button, Label, scrolledtext
 from tkinter.constants import DISABLED, NORMAL, END
-from Question import Question
+from QuestionBank import QuestionBank
 
 class MainWindow(tk.Tk):
     def __init__(self):
         tk.Tk.__init__(self)
         
         self._questionBank = None
-        self._questionBank = Question()
 
         self.loadUIElements()
         self.spawnMiddleScreen()
@@ -59,6 +58,7 @@ class MainWindow(tk.Tk):
     def startQuiz(self):
         """ Disable the Start & Next button and enable Submit button.
         Retrieves a random question """
+        self._questionBank = QuestionBank()
         self._btnStart.configure(state = DISABLED)
         self._btnSubmit.configure(state = NORMAL)
 
@@ -87,7 +87,7 @@ class MainWindow(tk.Tk):
             else:
                 self._textArea.insert(END, f'Question {self._questionBank.index} incorrect!\n')
 
-            if self._questionBank.index == Question.getTotalQuestion():
+            if self._questionBank.index == QuestionBank.getTotalQuestion():
                 self.endOfQuiz()
         else:
             self._textArea.insert(END, f'Please select answer for question {self._questionBank.index}\n')

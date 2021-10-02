@@ -1,6 +1,6 @@
 from random import randint
 
-class Question:
+class QuestionBank:
     _questionBank =  [ ['Variable names cannot start with digit', True], \
                         ["x='1'+1 is a valid statement", False], \
                         ['= and == can be used interchangeably', False], \
