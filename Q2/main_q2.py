@@ -4,6 +4,7 @@ from PartTimeEmployee import PartTimeEmployee
 from Department import Department, Manager
 
 def insertData(companySUSS : Company) -> None:
+    """ Intialising the department and employee objects based on question 2 requirements """
     deptIT = Department('IT Helpdesk', Manager(106, 'Tom', False, 4), True)
     deptMarketing = Department('Marketing', Manager(201, 'Neil', False, 4), False)
     
@@ -26,15 +27,11 @@ def main() -> None:
     companySUSS = Company('SUSS', 'EDU1002334')
     insertData(companySUSS)
      
-    print('-' * 80) # line separator
-    print('Inital Data')
-    print('-' * 80) # line separator
+    print('-' * 80,'Inital Data','-' * 80, sep='\n') 
     print(companySUSS)
-    print('-' * 80) # line separator
+    print('-' * 80) 
     
-    print('\n', '-' * 80, sep='') # line separator
-    print('After Setting Safe Management Percentage to 40')
-    print('-' * 80) # line separator
+    print('', '-' * 80,'After Setting Safe Management Percentage to 40','-' * 80, sep='\n') 
     companySUSS.setSafeManagePercentage(40)
     print(companySUSS)    
     print('-' * 80) # line separator

@@ -68,4 +68,7 @@ class Leave:
                f'Status: {self._status}'
 
 class LeaveApplicationException(Exception):
+    """ LeaveApplicationException is a subclass of the Exception class. 
+    
+        This class has no additional attribute or method. When the application encounters a business rule violation, an exception from this class is raised"""
     pass

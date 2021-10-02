@@ -107,9 +107,11 @@ def applyLeave(companySUSS: Company, applicantId: int, dept: str) -> None:
         toDate = inputDate('Enter to-date in dd/mm/yyyy: ')     
         while True:
             vacLeave = input('Vaccination leave? (Y/N): ').upper()
-            if vacLeave == 'Y' or vacLeave == 'N': break
-            else: print('Invalid input, please re-try')
-        
+            if vacLeave == 'Y' or vacLeave == 'N': 
+                break
+            else: 
+                print('Invalid input, please re-try')
+                
         try:
             if vacLeave == 'Y':
                 if companySUSS.getVaccinationLeaveCount(applicantId, fromDate.year) >= 2:
@@ -179,7 +181,7 @@ def main() -> None:
     
     while True:
         choice = menu()
-        if choice == 0: break
+        if   choice == 0: break
         elif choice == 1: applyLeave(companySUSS, inputIntId('Enter Employee ID: '), input("Enter employee's department: "))
         elif choice == 2: cancelLeave(companySUSS, inputIntId('Enter employee ID: '), inputIntId('Enter leave request ID to cancel: '))
         elif choice == 3: displayEmployeeLeaveProfile(companySUSS, inputIntId('Enter employee ID: '), input("Enter employee's department: "))

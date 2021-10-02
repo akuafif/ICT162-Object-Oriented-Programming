@@ -1,6 +1,6 @@
 from Employee import Employee
-
 class FullTimeEmployee(Employee):
+    """ FullTimeEmployee class is a subclass of Employee """
     
     _LEAVE_ENTITLEMENT = {4:22, 3:20, 2:18, 1:16, 0:16}
     
@@ -10,11 +10,12 @@ class FullTimeEmployee(Employee):
         super().adjustLeave(self.getLeaveEntitlement())
         
     def getLeaveEntitlement(self) -> int:
-        """ Returns the starting leave balanace for full time employees """
+        """ Returns the starting leave balanace for full time employees in int. """
         for grade, leave in type(self)._LEAVE_ENTITLEMENT.items():
             if self._grade == grade:
                 return leave
         return 16
     
     def __str__(self) -> str:
+        """ Returns the content of the object in readable string. """
         return super().__str__() + f' Grade: {self._grade}'
