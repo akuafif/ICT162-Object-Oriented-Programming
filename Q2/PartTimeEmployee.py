@@ -30,7 +30,6 @@ class PartTimeEmployee(Employee):
         for hrWorked, leave in type(self)._LEAVE_ENTITLEMENT.items():
             if self._hoursPerWeek <= hrWorked:
                 return leave
-        return 12
     
     def __str__(self) -> str:
         """ 

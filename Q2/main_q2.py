@@ -19,7 +19,6 @@ def insertData(company : Company) -> None:
     deptIT.addEmployee(PartTimeEmployee(103, 'Joe', False, 20))
     deptIT.addEmployee(FullTimeEmployee(104, 'Jack', True, 2))
     deptIT.addEmployee(FullTimeEmployee(105, 'Jane', False, 1))
-    deptIT.addEmployee(FullTimeEmployee(105, 'Jane', False, 1))
     
     deptMarketing.addEmployee(FullTimeEmployee(205, 'Charles', False, 4))
     deptMarketing.addEmployee(PartTimeEmployee(204, 'Darren', True, 32))

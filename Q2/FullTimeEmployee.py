@@ -30,7 +30,6 @@ class FullTimeEmployee(Employee):
         for grade, leave in type(self)._LEAVE_ENTITLEMENT.items():
             if self._grade == grade:
                 return leave
-        return 16
     
     def __str__(self) -> str:
         """ 

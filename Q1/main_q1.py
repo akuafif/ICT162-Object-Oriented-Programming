@@ -27,7 +27,7 @@ def insertData() -> list:
     """
     employees = []
     employees.append(FullTimeEmployee(101, 'Jeff', False, 3))
-    employees.append(FullTimeEmployee(102, 'Jim', True, 3))
+    employees.append(FullTimeEmployee(102, 'Jim', True, 4))
     employees.append(PartTimeEmployee(103, 'Joe', False, 20))
     employees.append(FullTimeEmployee(104, 'Jack', True, 2))
     employees.append(FullTimeEmployee(105, 'Jane', False, 1))
