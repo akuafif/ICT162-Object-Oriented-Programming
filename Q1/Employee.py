@@ -2,15 +2,12 @@ class Employee:
     """ Employee class is an abstract superclass that models one employee. """
     
     def __init__(self, employeeId : int, name : str, workFromHome : bool) -> None:
-        """ Create an Employee object with the given paramater and returns it.
+        """ Constructs all the necessary attributes for the Employee object. 
 
         Args:
-            employeeId (int): Employee's unique ID.
-            name (str): Employee's name.
+            employeeId (int): unique id of the employee.
+            name (str): name of the employee.
             workFromHome (bool): True is employee is working from home. False otherwise.
-        
-        Returns:
-            Employee: The Employee object created with the given paramater.
         """
         self._employeeId = employeeId
         self._name = name
@@ -22,7 +19,7 @@ class Employee:
         """ Getter method for the employee's ID.
 
         Returns:
-            int: The employee's ID. 
+            int: id of the employee. 
         """
         return self._employeeId
     
@@ -31,7 +28,7 @@ class Employee:
         """ Getter method for the employee's name.
 
         Returns:
-            str: The employee's name. 
+            str: days of leave entitlement.
         """
         return self._name
     
@@ -58,7 +55,7 @@ class Employee:
         """ Getter method for employee's leave balance.
 
         Returns:
-            int: The employee's leave balance.
+            int: days of leave balance remaining
         """
         return self._leaveBalance
     
@@ -66,13 +63,13 @@ class Employee:
         """ Adjust the employee leave balance.
 
         Args:
-            adjustment (int): Postive value to add. Otherwise, negative value to deduct. 
+            adjustment (int): postive value to add, otherwise negative value to deduct. 
         """
         self._leaveBalance += adjustment
     
     def __str__(self) -> str:
         """ 
         Returns:
-            str: The content of the object. 
+            str: content of the object. 
         """
         return f'ID: {self._employeeId}\tName: {self._name}\tLeave Balance: {self._leaveBalance}\tWFH: {"Yes" if self._workFromHome else "No "}\t'

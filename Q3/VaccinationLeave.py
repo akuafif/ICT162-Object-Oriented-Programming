@@ -8,7 +8,7 @@ class VaccinationLeave(Leave):
     def __str__(self) -> str:
         """ 
         Returns:
-            str: The content of the object. 
+            str: the content of the object. 
         """
         return f'Leave Request ID: {super().leaveRequestID}\n' \
                f'ID: {super().applicant.employeeId}\t\tName: {super().applicant.name}\n' \

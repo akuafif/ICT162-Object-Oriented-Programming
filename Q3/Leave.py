@@ -2,7 +2,8 @@ from Employee import Employee
 from datetime import datetime, timedelta
 
 class Leave:
-    """ Leave class is an abstract superclass that models one leave. """
+    """ A class to represent a leave request. """
+    
     _NEXT_ID = 202100001
     
     def __init__(self, applicant: Employee, fromDate: datetime, toDate: datetime) -> None:
@@ -14,9 +15,9 @@ class Leave:
             toDate (datetime): The end date of the leave.
 
         Raises:
-            LeaveApplicationException: Leave request should not have from-date on weekend.
-            LeaveApplicationException: Leave request from-Date is after to-Date.
-            LeaveApplicationException: Applicant's leave balance is lesser than leave duration.
+            LeaveApplicationException: If leave request from-date falls on weekend.
+            LeaveApplicationException: If leave request from-Date is after to-Date.
+            LeaveApplicationException: If applicant's leave balance is lesser than leave duration.
         
         Returns:
             Leave: The Leave object created with the given paramater.

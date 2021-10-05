@@ -2,18 +2,15 @@ from Manager import Manager
 from Employee import Employee
 
 class Department:
-    """ Department class is an abstract superclass that models one department. """
+    """ A class to represent a department. """
 
     def __init__(self, name: str, manager: Manager, essentialServices: bool) -> None:
-        """ Create an Department object with the given paramater and returns it.
+        """ Constructs all the necessary attributes for the Department object. 
 
         Args:
-            name (str): The department name.
-            manager (Manager): The manager of the department.
+            name (str): name of the department.
+            manager (Manager): manager of the department.
             essentialServices (bool): True is department is an essential service. False otherwise.
-            
-        Returns:
-            Department: The Department object created with the given paramater.
         """
         self._name = name
         self._employees = []
@@ -25,7 +22,7 @@ class Department:
         """ Getter method for department name.
 
         Returns:
-            str: The department name.
+            str: name of the department.
         """
         return self._name
     
@@ -42,10 +39,10 @@ class Department:
         """ Search an employee by ID.
 
         Args:
-            employeeId (int): The employee ID to search with.
+            employeeId (int): id of the employee to search with.
 
         Returns:
-            Employee: The Employee object with the matching employeeId. Otherwise, None.
+            Employee: Employee object with the matching employeeId. Otherwise, None.
         """
         if self._manager.employeeId == employeeId:
             return self._manager
@@ -59,7 +56,7 @@ class Department:
         ONLY accepts part-time and full-time employee as the parameter.
 
         Args:
-            newEmployee (Employee): The Employee object to be added into the department.
+            newEmployee (Employee): Employee object to be added into the department.
 
         Returns:
             bool: True if the operation is successfully, otherwise False.
@@ -72,10 +69,10 @@ class Department:
     def safeManagementCheck(self, percentage: float) -> str:
         """ 
         Args:
-            percentage (float): The Safe Management Percentage to check with.
+            percentage (float): value of safe management percentage to check with.
 
         Returns:
-            str: The report of all the employees who are WFH and computes the percentage of employee WFH (including the manager).
+            str: report of all the employees who are WFH and computes the percentage of employee WFH (including the manager).
         """
         # Get the amount of employee working from home
         workFromHome = 0
@@ -102,7 +99,7 @@ class Department:
     def __str__(self) -> str:
         """ 
         Returns:
-            str: The content of the object. 
+            str: content of the object. 
         """
         printStr = f'Department {self._name}\tEssential Services: {"Yes" if self._essentialServices else "No"}'
         printStr += '\n' + f'Manager ' + str(self._manager)

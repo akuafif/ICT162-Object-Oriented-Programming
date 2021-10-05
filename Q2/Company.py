@@ -5,15 +5,12 @@ class Company:
     
     _SAFE_MANAGEMENT_PERCENTAGE = 50.0
     
-    def __init__(self, name: str, uniqueEntityNumber: str) -> None:        
-        """ Create an Company object with the given paramater and returns it.
+    def __init__(self, name: str, uniqueEntityNumber: str) -> None:       
+        """ Constructs all the necessary attributes for the Company object. 
 
         Args:
-            name (str): The company name.
-            uniqueEntityNumber (str): The unique entity number of the company.
-              
-        Returns:
-            Company: The Company object created with the given paramater.
+            name (str): name of the company.
+            uniqueEntityNumber (str): unique entity number of the company.
         """
         self._name = name
         self._uniqueEntityNumber = uniqueEntityNumber
@@ -24,7 +21,7 @@ class Company:
         """ Return the Safe Management Percentage of the Company (Class variable).
 
         Returns:
-            float: Value of the current Safe Management Percentage.
+            float: value of the current Safe Management Percentage.
         """
         return cls._SAFE_MANAGEMENT_PERCENTAGE
     
@@ -33,7 +30,7 @@ class Company:
         """ Set the Safe Management Percentage for the Company (Class variable).
 
         Args:
-            newPercentage (float): Value of the new percentage.
+            newPercentage (float): value of the new percentage.
         """
         cls._SAFE_MANAGEMENT_PERCENTAGE = newPercentage
         
@@ -41,7 +38,7 @@ class Company:
         """ Search for a Department object by name.
 
         Args:
-            name (str): Department name to search.
+            name (str): name of the department to search.
 
         Returns:
             Department: Department object with the matching name. Otherwise, return None.
@@ -68,7 +65,7 @@ class Company:
     def __str__(self) -> str:
         """ 
         Returns:
-            str: The content of the object. 
+            str: content of the object. 
         """
         printStr = f'Company: {self._name}\tUEN: {self._uniqueEntityNumber}'
         for dept in self._department:

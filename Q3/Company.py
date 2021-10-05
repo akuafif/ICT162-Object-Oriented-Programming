@@ -3,19 +3,16 @@ from datetime import datetime
 from Department import Department
 
 class Company:
-    """ Company class is an abstract superclass that models one company. """
+    """ A class to represent a company. """
 
     _SAFE_MANAGEMENT_PERCENTAGE = 50.0
     
     def __init__(self, name: str, uniqueEntityNumber: str) -> None:
-        """ Create an Company object with the given paramater and returns it.
+        """ Constructs all the necessary attributes for the Company object. 
 
         Args:
-            name (str): The company name.
-            uniqueEntityNumber (str): The unique entity number of the company.
-              
-        Returns:
-            Company: The Company object created with the given paramater.
+            name (str): name of the company.
+            uniqueEntityNumber (str): unique entity number of the company.
         """
         self._name = name
         self._uniqueEntityNumber = uniqueEntityNumber
@@ -27,7 +24,7 @@ class Company:
         """ Return the Safe Management Percentage of the Company (Class variable).
 
         Returns:
-            float: Value of the current Safe Management Percentage.
+            float: value of the current Safe Management Percentage.
         """
         return cls._SAFE_MANAGEMENT_PERCENTAGE
     
@@ -36,7 +33,7 @@ class Company:
         """ Set the Safe Management Percentage for the Company (Class variable).
 
         Args:
-            newPercentage (float): Value of the new percentage.
+            newPercentage (float): value of the new percentage.
         """
         cls._SAFE_MANAGEMENT_PERCENTAGE = newPercentage
         
@@ -44,7 +41,7 @@ class Company:
         """ Search for a Department object by name.
 
         Args:
-            name (str): Department name to search.
+            name (str): name of the department to search.
 
         Returns:
             Department: Department object with the matching name. Otherwise, return None.
@@ -72,10 +69,10 @@ class Company:
         """ Search all the leaves applied by employee ID.
 
         Args:
-            employeeId (int): The employee's ID to be search with.
+            employeeId (int): id of the employee to be search with.
 
         Returns:
-            list: List of leave applied by the employee
+            list: list of leave applied by the employee
         """
         return self._leaveApplications.get(employeeId, []) 
     
@@ -83,10 +80,10 @@ class Company:
         """ Adds a Leave object to the company records.
 
         Args:
-            leave (Leave): The Leave object to be added into the company records.
+            leave (Leave): Leave object to be added into the company records.
 
         Raises:
-            LeaveApplicationException: Leave application cannot overlaps with approved leave.
+            LeaveApplicationException: if leave request overlaps with an approved leave.
         """
         # Compares for any approved leave overlap for the applicant
         if self.overlappingLeave(leave.applicant.employeeId, leave.fromDate, leave.toDate):
@@ -107,12 +104,12 @@ class Company:
         """ Cancels an employee's leave application.
 
         Args:
-            employeeId (int): The employee's ID of the Leave object
-            leaveRequestId (int): The leave request ID of the Leave object
+            employeeId (int): id of the employee of the Leave object
+            leaveRequestId (int): leave request ID of the Leave object
 
         Raises:
-            LeaveApplicationException: No leave requests for this employee
-            LeaveApplicationException: Leave request {leaveRequestId} not found for this employee {employeeId}
+            LeaveApplicationException: if there are no leave requests for this employee.
+            LeaveApplicationException: if the leaveRequestId was not found for the employee.
         """
         leaveList = self.getLeave(employeeId)
         
@@ -132,9 +129,9 @@ class Company:
         """ Search the company records for any overlapping leave requests for the given employee ID.
 
         Args:
-            employeeId (int): The employee's ID to be search with.
-            fromDate (datetime): The starting date of the search.
-            toDate (datetime): The end date of the search.
+            employeeId (int): id of the employee to be search with.
+            fromDate (datetime): starting date of the search.
+            toDate (datetime): end date of the search.
 
         Returns:
             bool: True if fromDate and toDate have any overlapping with existing leave request. False otherwise.
@@ -152,11 +149,11 @@ class Company:
         """ Get the total number of approved vaccination leave matching the employee ID for the given year.
 
         Args:
-            employeeId (int): The employee's ID to be search with.
-            year (int): The year to be search with.
+            employeeId (int): id of the employee to be search with.
+            year (int): year to be search with.
 
         Returns:
-            int: Days of approved vaccination leaves.
+            int: days of approved vaccination leaves.
         """
         leaveList = self._leaveApplications.get(employeeId)
         vaccinationCount = 0
@@ -170,7 +167,7 @@ class Company:
     def __str__(self) -> str:
         """ 
         Returns:
-            str: The content of the object. 
+            str: content of the object. 
         """
         printStr = f'Company: {self._name}\tUEN: {self._uniqueEntityNumber}'
         for dept in self._department:
