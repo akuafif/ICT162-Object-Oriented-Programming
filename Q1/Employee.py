@@ -1,4 +1,5 @@
-class Employee:
+from abc import ABC, abstractmethod
+class Employee(ABC):
     """ Employee class is an abstract superclass that models one employee. """
     
     def __init__(self, employeeId : int, name : str, workFromHome : bool) -> None:
@@ -59,6 +60,10 @@ class Employee:
         """
         return self._leaveBalance
     
+    @abstractmethod
+    def getLeaveEntitlement(self):
+        pass
+
     def adjustLeave(self, adjustment: int) -> None:
         """ Adjust the employee leave balance.
 

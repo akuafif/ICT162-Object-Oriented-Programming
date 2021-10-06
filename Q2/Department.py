@@ -77,11 +77,11 @@ class Department:
         # Get the amount of employee working from home
         workFromHome = 0
         for e in self._employees:
-            if e.workFromHome == 'Yes':
+            if e.workFromHome:
                 workFromHome += 1
                 
-        # Checks the manager if WFH
-        workFromHome += 1 if self._manager.workFromHome == 'Yes' else 0
+        # Include the manager
+        workFromHome += 1 if self._manager.workFromHome else 0
         
         # Get percentage of employee working from home        
         deptPercentageWFH = (workFromHome / (len(self._employees) + 1) ) * 100
@@ -95,7 +95,7 @@ class Department:
             requirementCheck = 'failed requirement'
         
         return f'No. of Employees working from home: {workFromHome} ({deptPercentageWFH:.1f}%) - {requirementCheck}.'
-        
+       
     def __str__(self) -> str:
         """ 
         Returns:
