@@ -1,14 +1,13 @@
 import tkinter as tk
 from tkinter import Frame, IntVar,Radiobutton, Button, Label, scrolledtext
 from tkinter.constants import DISABLED, NORMAL, END
-from QuestionBank import QuestionBank
+from QuizBank import QuizBank
 
-class MainWindow(tk.Tk):
+class QuizMainUI(tk.Tk):
+    """ MainWindow is a class that contains all the UI functionality and logic of the quiz """
     def __init__(self):
         tk.Tk.__init__(self)
         
-        self._questionBank = None
-
         self.loadUIElements()
         self.spawnMiddleScreen()
 
@@ -58,7 +57,7 @@ class MainWindow(tk.Tk):
     def startQuiz(self):
         """ Disable the Start & Next button and enable Submit button.
         Retrieves a random question """
-        self._questionBank = QuestionBank()
+        self._questionBank = QuizBank()
         self._btnStart.configure(state = DISABLED)
         self._btnSubmit.configure(state = NORMAL)
 
@@ -71,7 +70,7 @@ class MainWindow(tk.Tk):
         self._radTrue.configure(text = 'True')
         self._radFalse.configure(text = 'False')
         
-        self._lblQuestion.configure(text = self._questionBank.getNewQuestion())
+        self._lblQuestion.configure(text = f'Q{self._questionBank.index}. ' + self._questionBank.getNewQuestion())
         self._answer.set(0)
 
     def submitAnswer(self):
@@ -82,12 +81,12 @@ class MainWindow(tk.Tk):
 
             answer = True if self._answer.get() == 1 else False
 
-            if self._questionBank.checkAnswer(answer):
+            if self._questionBank.checkCureentAnswer(answer):
                 self._textArea.insert(END, f'Question {self._questionBank.index} correct!\n') 
             else:
                 self._textArea.insert(END, f'Question {self._questionBank.index} incorrect!\n')
 
-            if self._questionBank.index == QuestionBank.getTotalQuestion():
+            if self._questionBank.index == QuizBank.getTotalQuestion():
                 self.endOfQuiz()
         else:
             self._textArea.insert(END, f'Please select answer for question {self._questionBank.index}\n')
@@ -99,7 +98,8 @@ class MainWindow(tk.Tk):
         self._btnNext.configure(state = DISABLED)
         self._btnSubmit.configure(state = NORMAL)
 
-        self._lblQuestion.configure(text = self._questionBank.nextQuestion())
+        newQ = self._questionBank.nextQuestion()
+        self._lblQuestion.configure(text = f'Q{self._questionBank.index}. ' + newQ)
         self._answer.set(0)
 
     def endOfQuiz(self):

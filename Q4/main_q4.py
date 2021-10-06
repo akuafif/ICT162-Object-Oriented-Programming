@@ -1,7 +1,7 @@
-from UI import MainWindow
+from QuizWindow import QuizMainUI
 
 def main():
-    app = MainWindow()
+    app = QuizMainUI()
     app.mainloop()
 
 if __name__ == "__main__":
