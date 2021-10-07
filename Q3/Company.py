@@ -1,4 +1,5 @@
-from VaccinationLeave import VaccinationLeave, Leave, LeaveApplicationException
+from VaccinationLeave import VaccinationLeave
+from Leave import Leave, LeaveApplicationException
 from datetime import datetime
 from Department import Department
 

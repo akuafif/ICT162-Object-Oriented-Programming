@@ -1,6 +1,6 @@
 from QuizWindow import QuizMainUI
 
-def main():
+def main() -> None:
     app = QuizMainUI()
     app.mainloop()
 

@@ -1,6 +1,4 @@
-from Leave import Leave, LeaveApplicationException
-from Employee import Employee
-from datetime import datetime, date
+from Leave import Leave
 
 class VaccinationLeave(Leave):
     """ VaccinationLeave class is a subclass of Leave. """

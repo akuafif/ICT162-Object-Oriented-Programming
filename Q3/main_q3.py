@@ -1,12 +1,13 @@
 """ This file contains the main method for Question 3. """
 
-from VaccinationLeave import VaccinationLeave, Leave, LeaveApplicationException
-from datetime import datetime
+from VaccinationLeave import VaccinationLeave
+from Leave import Leave, LeaveApplicationException
 from Company import Company
 from FullTimeEmployee import FullTimeEmployee ,Employee
 from PartTimeEmployee import PartTimeEmployee
 from Department import Department, Manager
 from typing import Union
+from datetime import datetime
 
 def insertData(company : Company) -> None:
     """ Initialise all the data based on Q3d(i).
