@@ -104,11 +104,11 @@ class Leave:
         return self._status
     
     @status.setter
-    def status(self, newStatus) -> None:
+    def status(self, newStatus: str) -> None:
         """ Setter method for the leave status.
 
         Args:
-            newStatus ([type]): The new status of the leave.
+            newStatus (str): The new status of the leave.
         """
         self._status = newStatus
         

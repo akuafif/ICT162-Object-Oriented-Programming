@@ -75,6 +75,7 @@ class Company:
         Returns:
             list: list of leave applied by the employee
         """
+        # Returns empty list if employeeId not found in dictionary key
         return self._leaveApplications.get(employeeId, []) 
     
     def addLeave(self, leave: Leave) -> None:

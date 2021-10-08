@@ -67,7 +67,8 @@ class Department:
         return False
     
     def safeManagementCheck(self, percentage: float) -> str:
-        """ 
+        """ Counts all the employees who are working from home and computes the percentage of employee working from home (include the manager).
+        
         Args:
             percentage (float): value of safe management percentage to check with.
 

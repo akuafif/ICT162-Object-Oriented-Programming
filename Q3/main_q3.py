@@ -238,9 +238,11 @@ def updateSMMPercentage() -> None:
     while True:
         try:
             newPercentage = float(input('Enter new Safe Management Measure %: '))
-            if 0 <= newPercentage <= 100: break
-            else: raise ValueError
-        except (UnboundLocalError, ValueError):
+            if 0 <= newPercentage <= 100: 
+                break
+            else: 
+                raise ValueError
+        except ValueError:
             print('Sorry, please re-enter within range (0, 100)')
 
     Company.setSafeManagePercentage(newPercentage)
