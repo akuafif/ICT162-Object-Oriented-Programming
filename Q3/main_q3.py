@@ -55,9 +55,6 @@ def insertData(company : Company) -> None:
 def menu() -> int:
     """ Prints the main menu and returns the selection number.
 
-    Raises:
-        ValueError: Invalid selection number.
-
     Returns:
         int: The option that the user choose.
     """
@@ -77,7 +74,7 @@ def menu() -> int:
             if choice != None and 0 <= choice <= 6:
                 return choice
             else:
-                raise ValueError
+                print('Please enter a valid selection number\n')
         except:    
             print('Please enter a valid selection number\n')
 
@@ -86,9 +83,6 @@ def inputDate(message: str) -> datetime:
 
     Args:
         message (str): The message to display upon calling input().
-    
-    Raises:
-        ValueError: Invalid date format.
 
     Returns:
         datetime: The datetime object of the user inputted date.
@@ -239,11 +233,8 @@ def dailyMovementUpdate(company: Company, employeeId: int, dept:str) -> None:
         print('Invalid employee ID input, please re-try')
         
 def updateSMMPercentage() -> None:
-    """ Updates the Safe Management Measure (0% - 100%) 
-
-    Raises:
-        ValueError: new percentage is out of range (0, 100).
-    """
+    """ Updates the Safe Management Measure (0% - 100%) """
+    
     print(f'Current Safe Mangement Measure % is {Company.getSafeManagePercentage():.1f}')
     
     while True:
@@ -261,6 +252,7 @@ def updateSMMPercentage() -> None:
 
 def main() -> None:
     """ This method will creates a Company object, populates it with Department, Employee and Leave objects using the data provided by Q3d(i), before presenting a menu to the users. """
+    
     companySUSS = Company('SUSS', 'EDU1002334')
     insertData(companySUSS)
     
