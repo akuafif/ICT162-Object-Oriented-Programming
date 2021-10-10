@@ -38,10 +38,10 @@ class Leave:
             raise LeaveApplicationException('Leave request from-Date is after to-Date')
         
         # - compute duration by using fromDate and toDate
-        # - if duration days is lesser than the leave balance, throw exception
-        # - set status to approved  
+        # - if duration days is lesser than the leave balance, raise exception
         dateRange = (self._toDate.date() - self._fromDate.date()).days + 1
         for dt in (self._fromDate.date() + timedelta(n) for n in range(dateRange)):
+            # in this loop, check if the date falls on a weekend and increment the duration
             if not dt.weekday() in [5,6]:
                 self._duration += 1
 
