@@ -1,4 +1,4 @@
-from FullTimeEmployee import FullTimeEmployee
+from imports.FullTimeEmployee import FullTimeEmployee
 
 class Manager(FullTimeEmployee):   
     """ Manager class is a subclass of FullTimeEmployee. """

@@ -1,9 +1,9 @@
 """ This file contains the main method for Question 2. """
 
-from Company import Company
-from FullTimeEmployee import FullTimeEmployee
-from PartTimeEmployee import PartTimeEmployee
-from Department import Department, Manager
+from imports.Company import Company
+from imports.FullTimeEmployee import FullTimeEmployee
+from imports.PartTimeEmployee import PartTimeEmployee
+from imports.Department import Department, Manager
 
 def insertData(company : Company) -> None:
     """ Intialising the Department and Employee objects based on Q2c(i) requirements.

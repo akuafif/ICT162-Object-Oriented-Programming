@@ -1,4 +1,4 @@
-from Leave import Leave
+from imports.Leave import Leave
 
 class VaccinationLeave(Leave):
     """ VaccinationLeave class is a subclass of Leave. """

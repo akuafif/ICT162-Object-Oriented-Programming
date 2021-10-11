@@ -1,4 +1,4 @@
-from QuizWindow import QuizMainUI
+from imports.Q4.QuizWindow import QuizMainUI
 
 def main() -> None:
     app = QuizMainUI()

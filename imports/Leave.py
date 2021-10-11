@@ -1,4 +1,4 @@
-from Employee import Employee
+from imports.Employee import Employee
 from datetime import datetime, timedelta
 
 class Leave:

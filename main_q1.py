@@ -1,7 +1,7 @@
 """ This file contains the main method for Question 1. """
 
-from PartTimeEmployee import PartTimeEmployee
-from Manager import Manager, FullTimeEmployee
+from imports.PartTimeEmployee import PartTimeEmployee
+from imports.Manager import Manager, FullTimeEmployee
 
 def printEmployees(employees: list) -> None:
     """ Prints the employee list.\n

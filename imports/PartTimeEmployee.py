@@ -1,4 +1,4 @@
-from Employee import Employee
+from imports.Employee import Employee
 
 class PartTimeEmployee(Employee):
     """ PartTimeEmployee class is a subclass of Employee. """

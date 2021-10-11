@@ -1,7 +1,7 @@
-from VaccinationLeave import VaccinationLeave
-from Leave import Leave, LeaveApplicationException
-from datetime import datetime
-from Department import Department
+from imports.VaccinationLeave import VaccinationLeave
+from imports.Leave import Leave, LeaveApplicationException
+from imports.datetime import datetime
+from imports.Department import Department
 
 class Company:
     """ A class to represent a company. """

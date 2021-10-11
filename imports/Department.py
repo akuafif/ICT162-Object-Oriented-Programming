@@ -1,5 +1,5 @@
-from Manager import Manager
-from Employee import Employee
+from imports.Manager import Manager
+from imports.Employee import Employee
 
 class Department:
     """ A class to represent a department. """
