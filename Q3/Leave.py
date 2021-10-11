@@ -23,31 +23,31 @@ class Leave:
             Leave: The Leave object created with the given paramater.
         """
         self._leaveRequestId = type(self)._NEXT_ID
-        type(self)._NEXT_ID += 1
         
         self._applicant = applicant
         self._fromDate = fromDate
         self._toDate = toDate
-        self._duration = 0
         
-        # raise exception if fromDate is on weekend or/and is after toDate
-        if self._fromDate.strftime('%A') == 'Saturday' or \
-            self._fromDate.strftime('%A') == 'Sunday':
+        # raise exception if fromDate is on weekend
+        if self._fromDate.strftime('%A') == 'Saturday' or self._fromDate.strftime('%A') == 'Sunday':
             raise LeaveApplicationException('Leave request should not have from-date on weekend')
-        if self._fromDate.date() > self._toDate.date():
+        
+        # raise exception if from-Date is after to-Date
+        if self._fromDate > self._toDate:
             raise LeaveApplicationException('Leave request from-Date is after to-Date')
         
-        # - compute duration by using fromDate and toDate
-        # - if duration days is lesser than the leave balance, raise exception
-        dateRange = (self._toDate.date() - self._fromDate.date()).days + 1
-        for dt in (self._fromDate.date() + timedelta(n) for n in range(dateRange)):
-            # in this loop, check if the date falls on a weekend and increment the duration
-            if not dt.weekday() in [5,6]:
-                self._duration += 1
+        # get the amount of days between the fromDate and the toDate
+        daysApart = (self._toDate - self._fromDate).days + 1
+        
+        # for loop to check the amount of weekdays between fromDate till daysApart, nested for loop the increment the timedelta(days) in range of daysApart
+        self._duration = len([dt.weekday() for dt in (self._fromDate + timedelta(days) for days in range(daysApart)) if not dt.weekday() in [5,6]])
 
+        # raise exception if there is not enough leaveBalance for the leave duration
         if self._applicant.leaveBalance - self._duration < 0:
             raise LeaveApplicationException("Applicant's leave balance is lesser than leave duration")
-        self._status = 'Approved'
+
+        self._status = 'Approved'        
+        type(self)._NEXT_ID += 1
         
     @property
     def leaveRequestID(self) -> int:
