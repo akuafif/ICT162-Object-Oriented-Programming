@@ -1,6 +1,6 @@
 from imports.VaccinationLeave import VaccinationLeave
 from imports.Leave import Leave, LeaveApplicationException
-from imports.datetime import datetime
+from datetime import datetime
 from imports.Department import Department
 
 class Company:

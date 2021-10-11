@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import Frame, IntVar,Radiobutton, Button, Label, scrolledtext
 from tkinter.constants import DISABLED, N, W, E, NORMAL, END
-from QuizBank import QuizBank
+from imports.Q4.QuizBank import QuizBank
 
 class QuizMainUI(tk.Tk):
     """ MainWindow is a class that contains all the UI functionality and logic of the quiz """
