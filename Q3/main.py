@@ -90,7 +90,8 @@ def inputDate(message: str) -> datetime:
     while True:
         try:
             userInput = input(message)
-            return datetime.strptime(userInput, '%d/%M/%Y')
+            day, month, year = userInput.split('/')
+            return datetime(year=int(year),month=int(month),day=int(day))
         except ValueError:
             print(f'{userInput} is not in the format dd/mm/yyyy')
 
