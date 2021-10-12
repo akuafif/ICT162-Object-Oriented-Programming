@@ -2,8 +2,12 @@ from random import randint
 
 class QuizBank:
     """ A Class that is reposible to store any quiz related data """
-    
-    _questionBank =  [ ['Variable names cannot start with digit', True], \
+    def __init__(self) -> None:
+        """ Constructor for QuizBank object """
+        self._index = 1
+        self._currentQuestion = 0
+        self._correctAnswers = 0
+        self._questions = [ ['Variable names cannot start with digit', True], \
                         ["x='1'+1 is a valid statement", False], \
                         ['= and == can be used interchangeably', False], \
                         ['logical operator and has higher precedence than or', True], \
@@ -11,22 +15,7 @@ class QuizBank:
                         ['x,y = y, x swaps the values of x and y', True], \
                         ['2=x is a valid statement', False], \
                         ['Variable names can be 50 letters long', True] ]
-
-    def __init__(self) -> None:
-        """ Constructor for QuizBank object """
-        self._index = 1
-        self._currentQuestion = 0
-        self._correctAnswers = 0
-        self._questions = type(self)._questionBank.copy() 
-
-    @classmethod
-    def getTotalQuestion(cls) -> int:
-        """ Gets the total number of question.
-        
-        Returns:
-            int: the number of question in the quiz.
-        """
-        return len(cls._questionBank)
+        self._totalQuestion = len(self._questions)
 
     @property
     def index(self) -> int:
@@ -54,6 +43,15 @@ class QuizBank:
             bool: the amount of question answered correctly
         """
         return self._correctAnswers 
+    
+    
+    def getTotalQuestion(self) -> int:
+        """ Gets the total number of question.
+        
+        Returns:
+            int: the number of question in the quiz.
+        """
+        return self._totalQuestion 
 
     def getNewQuestion(self) -> str:
         """ Returns a new question.
@@ -97,7 +95,3 @@ class QuizBank:
         self._index += 1
         del self._questions[self._currentQuestion]
         return self.getNewQuestion()
-
-    def reset(self):
-        """ Re-init or reset self to restart quiz """
-        self.__init__()

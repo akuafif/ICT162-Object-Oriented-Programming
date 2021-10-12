@@ -57,7 +57,7 @@ class Company:
         Returns:
             bool: True if the department is added successfully, and False otherwise.
         """
-        if self.searchDepartment(newDepartment) == None:
+        if self.searchDepartment(newDepartment.name) == None:
             self._department.append(newDepartment)
             return True
         return False

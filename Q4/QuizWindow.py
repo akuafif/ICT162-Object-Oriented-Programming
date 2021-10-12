@@ -88,7 +88,7 @@ class QuizMainUI(tk.Tk):
             else:
                 self._textArea.insert(END, f'Question {self._questionBank.index} incorrect!\n')
 
-            if self._questionBank.index == QuizBank.getTotalQuestion():
+            if self._questionBank.index == self._questionBank.getTotalQuestion():
                 self.endOfQuiz()
         else:
             self._textArea.insert(END, f'Please select answer for question {self._questionBank.index}\n')
