@@ -99,7 +99,7 @@ class Company:
             
         self._leaveApplications[leave.applicant.employeeId].append(leave)
         leave.applicant.adjustLeave(leave.duration * -1)
-        if leave.fromDate.date() <= datetime.now().date() <= leave.toDate.date():
+        if leave.fromDate <= datetime.now() <= leave.toDate:
             leave.applicant.workFromHome = True
     
     def cancelLeave(self, employeeId: int, leaveRequestId: int) -> None:
@@ -141,8 +141,8 @@ class Company:
         leaveList = self.getLeave(employeeId)
         for l in leaveList:
             if l.status == 'Approved':
-                compareStart = max(l.fromDate.date(), fromDate.date())
-                compareEnd = min(l.toDate.date(), toDate.date())     
+                compareStart = max(l.fromDate, fromDate)
+                compareEnd = min(l.toDate, toDate)     
                 if ((compareEnd-compareStart).days + 1) > 0 :
                     return True
         return False

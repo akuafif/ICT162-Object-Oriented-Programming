@@ -42,7 +42,7 @@ def main() -> None:
     print('', '-' * 80,'After Setting Safe Management Percentage to 40','-' * 80, sep='\n') 
     companySUSS.setSafeManagePercentage(40)
     print(companySUSS)    
-    print('-' * 80) # line separator
+    print('-' * 80)
     
 if __name__ == '__main__':
     main()

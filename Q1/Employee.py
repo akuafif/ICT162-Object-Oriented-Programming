@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+
 class Employee(ABC):
     """ Employee class is an abstract superclass that models one employee. """
     
