@@ -22,7 +22,6 @@ class Leave:
         Returns:
             Leave: The Leave object created with the given paramater.
         """
-        self._leaveRequestId = type(self)._NEXT_ID
         
         self._applicant = applicant
         self._fromDate = fromDate
@@ -46,8 +45,11 @@ class Leave:
         if self._applicant.leaveBalance - self._duration < 0:
             raise LeaveApplicationException("Applicant's leave balance is lesser than leave duration")
 
-        self._status = 'Approved'        
-        type(self)._NEXT_ID += 1
+        self._status = 'Approved'
+           
+        # _NEXT_ID logic for YYYY99999 generator, for year other than 2021
+        self._leaveRequestId = int(str(datetime.now().year) + str(type(self)._NEXT_ID)[4:])     
+        type(self)._NEXT_ID = self._leaveRequestId + 1
         
     @property
     def leaveRequestID(self) -> int:
