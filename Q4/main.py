@@ -1,8 +1,7 @@
-from QuizWindow import QuizMainUI
+from QuizGUI import QuizGUI
 
 def main() -> None:
-    app = QuizMainUI()
-    app.mainloop()
+    QuizGUI()
 
 if __name__ == "__main__":
     main()

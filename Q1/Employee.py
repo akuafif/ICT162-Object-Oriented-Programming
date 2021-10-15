@@ -11,10 +11,10 @@ class Employee(ABC):
             name (str): name of the employee.
             workFromHome (bool): True is employee is working from home. False otherwise.
         """
-        self._employeeId = employeeId
-        self._name = name
-        self._workFromHome = workFromHome
-        self._leaveBalance = 0
+        self.__employeeId = employeeId
+        self.__name = name
+        self.__workFromHome = workFromHome
+        self.__leaveBalance = 0
 
     @property
     def employeeId(self) -> int: 
@@ -23,7 +23,7 @@ class Employee(ABC):
         Returns:
             int: id of the employee. 
         """
-        return self._employeeId
+        return self.__employeeId
     
     @property
     def name(self) -> str: 
@@ -32,7 +32,7 @@ class Employee(ABC):
         Returns:
             str: days of leave entitlement.
         """
-        return self._name
+        return self.__name
     
     @property
     def workFromHome(self) -> bool:
@@ -41,7 +41,7 @@ class Employee(ABC):
         Returns:
             bool: True if employee is working from home. False otherwise. 
         """
-        return self._workFromHome 
+        return self.__workFromHome 
         
     @workFromHome.setter
     def workFromHome(self, atHome : bool) -> None: 
@@ -50,7 +50,7 @@ class Employee(ABC):
         Args:
             atHome (bool): True is employee is working from home. False otherwise. 
         """
-        self._workFromHome = atHome
+        self.__workFromHome = atHome
         
     @property
     def leaveBalance(self) -> int:
@@ -59,11 +59,11 @@ class Employee(ABC):
         Returns:
             int: days of leave balance remaining
         """
-        return self._leaveBalance
+        return self.__leaveBalance
     
     @abstractmethod
-    def getLeaveEntitlement(self):
-        pass
+    def getLeaveEntitlement(self) -> int:
+        return 0
 
     def adjustLeave(self, adjustment: int) -> None:
         """ Adjust the employee leave balance.
@@ -71,11 +71,11 @@ class Employee(ABC):
         Args:
             adjustment (int): postive value to add, otherwise negative value to deduct. 
         """
-        self._leaveBalance += adjustment
+        self.__leaveBalance += adjustment
     
     def __str__(self) -> str:
         """ 
         Returns:
             str: content of the object. 
         """
-        return f'ID: {self._employeeId}\tName: {self._name}\tLeave Balance: {self._leaveBalance}\tWFH: {"Yes" if self._workFromHome else "No "}\t'
+        return f'ID: {self.__employeeId}\tName: {self.__name}\tLeave Balance: {self.__leaveBalance}\tWFH: {"Yes" if self.__workFromHome else "No "}\t'

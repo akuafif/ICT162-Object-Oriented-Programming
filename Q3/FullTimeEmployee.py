@@ -15,7 +15,7 @@ class FullTimeEmployee(Employee):
             grade (int): employment grade of the employee.
         """
         super().__init__(employeeId, name, workFromHome)
-        self._grade = grade
+        self.__grade = grade
         super().adjustLeave(self.getLeaveEntitlement())
         
     def getLeaveEntitlement(self) -> int:
@@ -25,7 +25,7 @@ class FullTimeEmployee(Employee):
             int: days of leave entitlement.
         """
         for grade, leave in type(self)._LEAVE_ENTITLEMENT.items():
-            if self._grade == grade:
+            if self.__grade == grade:
                 return leave
     
     def __str__(self) -> str:
@@ -33,4 +33,4 @@ class FullTimeEmployee(Employee):
         Returns:
             str: content of the object. 
         """
-        return super().__str__() + f' Grade: {self._grade}'
+        return super().__str__() + f' Grade: {self.__grade}'

@@ -23,33 +23,35 @@ class Leave:
             Leave: The Leave object created with the given paramater.
         """
         
-        self._applicant = applicant
-        self._fromDate = fromDate
-        self._toDate = toDate
+        self.__applicant = applicant
+        self.__fromDate = fromDate
+        self.__toDate = toDate
         
         # raise exception if fromDate is on weekend
-        if self._fromDate.strftime('%A') == 'Saturday' or self._fromDate.strftime('%A') == 'Sunday':
+        if self.__fromDate.strftime('%A') == 'Saturday' or self.__fromDate.strftime('%A') == 'Sunday':
             raise LeaveApplicationException('Leave request should not have from-date on weekend')
         
         # raise exception if from-Date is after to-Date
-        if self._fromDate > self._toDate:
+        if self.__fromDate > self.__toDate:
             raise LeaveApplicationException('Leave request from-Date is after to-Date')
         
         # get the amount of days between the fromDate and the toDate
-        daysApart = (self._toDate - self._fromDate).days + 1
+        daysApart = (self.__toDate - self.__fromDate).days + 1
         
-        # for loop to check the amount of weekdays between fromDate till daysApart, nested for loop the increment the timedelta(days) in range of daysApart
-        self._duration = len([dt.weekday() for dt in (self._fromDate + timedelta(days) for days in range(daysApart)) if not dt.weekday() in [5,6]])
+        # To get the amount of weekdays between fromDate and toDate
+        # for loop from fromDate, enumerate the list of timedelta returned by the nested loop
+        # nested for loop to increment the timedelta(days) in range of daysApart(int) and return all the timedelta type in a list
+        self._duration = len([dt.weekday() for dt in (self.__fromDate + timedelta(days) for days in range(daysApart)) if not dt.weekday() in [5,6]])
 
         # raise exception if there is not enough leaveBalance for the leave duration
-        if self._applicant.leaveBalance - self._duration < 0:
+        if self.__applicant.leaveBalance - self._duration < 0:
             raise LeaveApplicationException("Applicant's leave balance is lesser than leave duration")
 
         self._status = 'Approved'
            
-        # _NEXT_ID logic for YYYY99999 generator, for year other than 2021
-        self._leaveRequestId = int(str(datetime.now().year) + str(type(self)._NEXT_ID)[4:])     
-        type(self)._NEXT_ID = self._leaveRequestId + 1
+        # _NEXT_ID increment after approved
+        self.__leaveRequestId = type(self)._NEXT_ID
+        type(self)._NEXT_ID += 1
         
     @property
     def leaveRequestID(self) -> int:
@@ -58,7 +60,7 @@ class Leave:
         Returns:
             int: The leave request ID.
         """
-        return self._leaveRequestId
+        return self.__leaveRequestId
     
     @property
     def applicant(self) -> Employee:
@@ -67,7 +69,7 @@ class Leave:
         Returns:
             Employee: Applicant in Employee object
         """
-        return self._applicant
+        return self.__applicant
     
     @property
     def fromDate(self) -> datetime:
@@ -76,7 +78,7 @@ class Leave:
         Returns:
             datetime: The starting date of the leave.
         """
-        return self._fromDate
+        return self.__fromDate
     
     @property
     def toDate(self) -> datetime:
@@ -85,7 +87,7 @@ class Leave:
         Returns:
             datetime: The end date of the leave.
         """
-        return self._toDate
+        return self.__toDate
     
     @property
     def duration(self) -> int:
@@ -119,9 +121,9 @@ class Leave:
         Returns:
             str: The content of the object. 
         """
-        return f'Leave Request ID: {self._leaveRequestId}\n' \
-               f'ID: {self._applicant.employeeId}\t\tName: {self._applicant.name}\n' \
-               f'From: {self._fromDate.strftime("%d %b %y")} to {self._toDate.strftime("%d %b %y")}\n' \
+        return f'Leave Request ID: {self.__leaveRequestId}\n' \
+               f'ID: {self.__applicant.employeeId}\t\tName: {self.__applicant.name}\n' \
+               f'From: {self.__fromDate.strftime("%d %b %y")} to {self.__toDate.strftime("%d %b %y")}\n' \
                f'Duration: {self._duration} days\n' \
                f'Status: {self._status}'
 

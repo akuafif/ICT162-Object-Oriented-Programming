@@ -15,10 +15,10 @@ class Company:
             name (str): name of the company.
             uniqueEntityNumber (str): unique entity number of the company.
         """
-        self._name = name
-        self._uniqueEntityNumber = uniqueEntityNumber
-        self._department = []
-        self._leaveApplications = {} # Key:Value = employeeId : [Leave]
+        self.__name = name
+        self.__uniqueEntityNumber = uniqueEntityNumber
+        self.__department = []
+        self.__leaveApplications = {} # Key:Value = employeeId : [Leave]
       
     @classmethod  
     def getSafeManagePercentage(cls) -> float:
@@ -47,7 +47,7 @@ class Company:
         Returns:
             Department: Department object with the matching name. Otherwise, return None.
         """
-        for dept in self._department:
+        for dept in self.__department:
             if name == dept.name:
                 return dept
         return None
@@ -62,7 +62,7 @@ class Company:
             bool: True if the department is added successfully, and False otherwise.
         """
         if self.searchDepartment(newDepartment.name) == None:
-            self._department.append(newDepartment)
+            self.__department.append(newDepartment)
             return True
         return False
     
@@ -76,7 +76,7 @@ class Company:
             list: list of leave applied by the employee
         """
         # Returns empty list if employeeId not found in dictionary key
-        return self._leaveApplications.get(employeeId, []) 
+        return self.__leaveApplications.get(employeeId, []) 
     
     def addLeave(self, leave: Leave) -> None:
         """ Adds a Leave object to the company records.
@@ -93,11 +93,11 @@ class Company:
             raise LeaveApplicationException('Leave application cannot overlaps with approved leave')
         
         # To add to employee's leave list, adjust leave and set WFH = True if the leave include today()
-        if not self._leaveApplications.get(leave.applicant.employeeId, False):
+        if not self.__leaveApplications.get(leave.applicant.employeeId, False):
             # initialise value with empty list if not yet created
-            self._leaveApplications[leave.applicant.employeeId] = []
+            self.__leaveApplications[leave.applicant.employeeId] = []
             
-        self._leaveApplications[leave.applicant.employeeId].append(leave)
+        self.__leaveApplications[leave.applicant.employeeId].append(leave)
         leave.applicant.adjustLeave(leave.duration * -1)
         if leave.fromDate <= datetime.now() <= leave.toDate:
             leave.applicant.workFromHome = True
@@ -157,7 +157,7 @@ class Company:
         Returns:
             int: days of approved vaccination leaves.
         """
-        leaveList = self._leaveApplications.get(employeeId)
+        leaveList = self.__leaveApplications.get(employeeId)
         vaccinationCount = 0
         if not len(leaveList) == 0:
             for leave in leaveList:
@@ -171,7 +171,7 @@ class Company:
         Returns:
             str: content of the object. 
         """
-        printStr = f'Company: {self._name}\tUEN: {self._uniqueEntityNumber}'
-        for dept in self._department:
+        printStr = f'Company: {self.__name}\tUEN: {self.__uniqueEntityNumber}'
+        for dept in self.__department:
             printStr += '\n' + str(dept) + '\n' + dept.safeManagementCheck(type(self)._SAFE_MANAGEMENT_PERCENTAGE)
         return printStr

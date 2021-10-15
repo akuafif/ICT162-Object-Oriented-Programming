@@ -12,9 +12,9 @@ class Company:
             name (str): name of the company.
             uniqueEntityNumber (str): unique entity number of the company.
         """
-        self._name = name
-        self._uniqueEntityNumber = uniqueEntityNumber
-        self._department = []
+        self.__name = name
+        self.__uniqueEntityNumber = uniqueEntityNumber
+        self.__department = []
       
     @classmethod  
     def getSafeManagePercentage(cls) -> float:
@@ -43,7 +43,7 @@ class Company:
         Returns:
             Department: Department object with the matching name. Otherwise, return None.
         """
-        for dept in self._department:
+        for dept in self.__department:
             if name == dept.name:
                 return dept
         return None
@@ -58,7 +58,7 @@ class Company:
             bool: True if the department is added successfully, and False otherwise.
         """
         if self.searchDepartment(newDepartment.name) == None:
-            self._department.append(newDepartment)
+            self.__department.append(newDepartment)
             return True
         return False
     
@@ -67,7 +67,7 @@ class Company:
         Returns:
             str: content of the object. 
         """
-        printStr = f'Company: {self._name}\tUEN: {self._uniqueEntityNumber}'
-        for dept in self._department:
+        printStr = f'Company: {self.__name}\tUEN: {self.__uniqueEntityNumber}'
+        for dept in self.__department:
             printStr += '\n' + str(dept) + '\n' + dept.safeManagementCheck(type(self)._SAFE_MANAGEMENT_PERCENTAGE)
         return printStr  

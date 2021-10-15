@@ -2,9 +2,9 @@ from Manager import Manager
 from Employee import Employee
 
 class Department:
-    """ A class to represent a department. """
+    """ Department class is an abstract superclass that models one department. """
 
-    def __init__(self, name: str, manager: Manager, essentialServices: bool) -> None:
+    def __init__(self, name: str, manager: Manager, essentialServices: bool) -> None: 
         """ Constructs all the necessary attributes for the Department object. 
 
         Args:
@@ -12,10 +12,10 @@ class Department:
             manager (Manager): manager of the department.
             essentialServices (bool): True is department is an essential service. False otherwise.
         """
-        self._name = name
-        self._employees = []
-        self._manager = manager
-        self._essentialServices = essentialServices
+        self.__name = name
+        self.__employees = []
+        self.__manager = manager
+        self.__essentialServices = essentialServices
         
     @property
     def name(self) -> str:
@@ -24,7 +24,7 @@ class Department:
         Returns:
             str: name of the department.
         """
-        return self._name
+        return self.__name
     
     @property
     def essentialServices(self) -> bool:
@@ -33,7 +33,7 @@ class Department:
         Returns:
             bool: True if essential service. Otherwise, False.
         """
-        return self._essentialServices
+        return self.__essentialServices
     
     def searchEmployee(self, employeeId: int) -> Employee:
         """ Search an employee by ID.
@@ -44,9 +44,9 @@ class Department:
         Returns:
             Employee: Employee object with the matching employeeId. Otherwise, None.
         """
-        if self._manager.employeeId == employeeId:
-            return self._manager
-        for e in self._employees:
+        if self.__manager.employeeId == employeeId:
+            return self.__manager
+        for e in self.__employees:
             if employeeId == e.employeeId:
                 return e
         return None
@@ -62,7 +62,7 @@ class Department:
             bool: True if the operation is successfully, otherwise False.
         """
         if self.searchEmployee(newEmployee.employeeId) == None and type(newEmployee) != type(Manager):
-            self._employees.append(newEmployee)
+            self.__employees.append(newEmployee)
             return True
         return False
     
@@ -77,18 +77,18 @@ class Department:
         """
         # Get the amount of employee working from home
         workFromHome = 0
-        for e in self._employees:
+        for e in self.__employees:
             if e.workFromHome:
                 workFromHome += 1
                 
         # Include the manager
-        workFromHome += 1 if self._manager.workFromHome else 0
+        workFromHome += 1 if self.__manager.workFromHome else 0
         
         # Get percentage of employee working from home        
-        deptPercentageWFH = (workFromHome / (len(self._employees) + 1) ) * 100
+        deptPercentageWFH = (workFromHome / (len(self.__employees) + 1) ) * 100
         
         # Checking for WFH requirement check
-        if self._essentialServices:
+        if self.__essentialServices:
             requirementCheck = 'exempted'
         elif deptPercentageWFH >= percentage:
             requirementCheck = 'passed requirement'
@@ -96,14 +96,14 @@ class Department:
             requirementCheck = 'failed requirement'
         
         return f'No. of Employees working from home: {workFromHome} ({deptPercentageWFH:.1f}%) - {requirementCheck}.'
-        
+       
     def __str__(self) -> str:
         """ 
         Returns:
             str: content of the object. 
         """
-        printStr = f'Department {self._name}\tEssential Services: {"Yes" if self._essentialServices else "No"}'
-        printStr += '\n' + f'Manager ' + str(self._manager)
-        for e in self._employees:
+        printStr = f'Department {self.__name}\tEssential Services: {"Yes" if self.__essentialServices else "No"}'
+        printStr += '\n' + f'Manager ' + str(self.__manager)
+        for e in self.__employees:
             printStr += '\n' + str(e)
         return printStr

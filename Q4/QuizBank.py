@@ -4,10 +4,9 @@ class QuizBank:
     """ A Class that is reposible to store any quiz related data """
     def __init__(self) -> None:
         """ Constructor for QuizBank object """
-        self._index = 1
-        self._currentQuestion = 0
-        self._correctAnswers = 0
-        self._questions = [ ['Variable names cannot start with digit', True], \
+        self.__currentQuestion = 0
+        self.__correctAnswers = 0
+        self.__questions = [ ['Variable names cannot start with digit', True], \
                         ["x='1'+1 is a valid statement", False], \
                         ['= and == can be used interchangeably', False], \
                         ['logical operator and has higher precedence than or', True], \
@@ -15,16 +14,7 @@ class QuizBank:
                         ['x,y = y, x swaps the values of x and y', True], \
                         ['2=x is a valid statement', False], \
                         ['Variable names can be 50 letters long', True] ]
-        self._totalQuestion = len(self._questions)
-
-    @property
-    def index(self) -> int:
-        """ The number of question attempted. 
-
-        Returns:
-            int: the number of question attempted
-        """
-        return self._index
+        self.__totalQuestion = len(self.__questions)
     
     @property
     def currentQuestion(self) -> int:
@@ -33,7 +23,7 @@ class QuizBank:
         Returns:
             int: the current question index in the question list
         """
-        return self._currentQuestion
+        return self.__currentQuestion
 
     @property
     def correctAnswers(self) -> bool:
@@ -42,7 +32,7 @@ class QuizBank:
         Returns:
             bool: the amount of question answered correctly
         """
-        return self._correctAnswers 
+        return self.__correctAnswers 
     
     
     def getTotalQuestion(self) -> int:
@@ -51,7 +41,7 @@ class QuizBank:
         Returns:
             int: the number of question in the quiz.
         """
-        return self._totalQuestion 
+        return self.__totalQuestion 
 
     def getNewQuestion(self) -> str:
         """ Returns a new question.
@@ -59,19 +49,8 @@ class QuizBank:
         Returns:
             str: the new question
         """
-        self._currentQuestion = randint(0, len(self._questions)-1)
-        return self._questions[self._currentQuestion][0]
-
-    def getAnswer(self, questionNo: int) -> bool:
-        """ Get the correct answer based on the question number.
-
-        Args:
-            questionNo (int): the question number
-
-        Returns:
-            bool: the correct answer of the question number
-        """
-        return self._questions[questionNo][1]
+        self.__currentQuestion = randint(0, len(self.__questions)-1)
+        return self.__questions[self.__currentQuestion][0]
 
     def checkCureentAnswer(self, answer: bool) -> bool:
         """ Checks and compare the current question answer with the answer in argument.
@@ -82,8 +61,8 @@ class QuizBank:
         Returns:
             bool: True if answer is correct, otherwise False
         """
-        self._correctAnswers += 1 if answer == self.getAnswer(self.currentQuestion) else 0
-        return answer == self.getAnswer(self.currentQuestion)
+        self.__correctAnswers += 1 if answer == self.__questions[self.__currentQuestion][1] else 0
+        return answer == self.__questions[self.__currentQuestion][1] 
 
     def nextQuestion(self) -> str:
         """ Gets the next question in the list
@@ -92,6 +71,14 @@ class QuizBank:
             str: the new question
         """
         # Remove the current question from the list
-        self._index += 1
-        del self._questions[self._currentQuestion]
+        del self.__questions[self.__currentQuestion]
         return self.getNewQuestion()
+    
+    
+    def totalQuestionsAttemped(self) -> int:
+        """ The number of question attempted. 
+
+        Returns:
+            int: the number of question attempted
+        """
+        return (self.__totalQuestion - len(self.__questions)) + 1
