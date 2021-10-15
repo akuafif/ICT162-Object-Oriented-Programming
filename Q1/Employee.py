@@ -63,10 +63,15 @@ class Employee(ABC):
     
     @abstractmethod
     def getLeaveEntitlement(self) -> int:
-        return 0
+        """ Returns the leave entitlement for employees.
+
+        Returns:
+            int: days of leave entitlement.
+        """
+        pass
 
     def adjustLeave(self, adjustment: int) -> None:
-        """ Adjust the employee leave balance.
+        """ Adjust the employee's leave balance.
 
         Args:
             adjustment (int): postive value to add, otherwise negative value to deduct. 
