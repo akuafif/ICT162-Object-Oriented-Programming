@@ -146,8 +146,8 @@ def applyLeave(company: Company, applicantId: int, dept: str) -> None:
         applicant, employeeDept = getEmployeeAndDept(company,applicantId,dept)
         if applicant != None and employeeDept != None:
             # Get dates and check for vaccination leave
-            fromDate = inputDate('Enter from-date in dd/mm/yyyy: ')
-            toDate = inputDate('Enter to-date in dd/mm/yyyy: ')     
+            fromDate = inputDate('Enter from-Date in dd/mm/yyyy: ')
+            toDate = inputDate('Enter to-Date in dd/mm/yyyy: ')     
             while True:
                 vacLeave = input('Vaccination leave? (Y/N): ').upper()
                 if vacLeave == 'Y' or vacLeave == 'N': 

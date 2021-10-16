@@ -20,7 +20,7 @@ class VaccinationLeave(Leave):
             raise LeaveApplicationException('From-date not the same as to-Date')
         
         # Raise exception if both date are before 30 Dec 2020
-        if fromDate > datetime(year = 2020, month = 12, day = 30):
+        if not fromDate > datetime(year = 2020, month = 12, day = 30):
             raise LeaveApplicationException('Leave date is before 30 Dec 2020')
         
         # Use parent init to continue with constructor and to check for other exception

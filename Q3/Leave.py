@@ -37,7 +37,7 @@ class Leave:
         
         # To get the amount of weekdays between fromDate and toDate
         # for loop from fromDate, enumerate the list of timedelta returned by the nested loop
-        # nested for loop to increment the timedelta(days) in range of daysApart(int) and return all the timedelta type in a list
+        # nested for loop to create a list of timedelta(days) in range of daysApart(int) and return them 
         self._duration = len([dt.weekday() for dt in (self.__fromDate + timedelta(days) for days in range(daysApart)) if not dt.weekday() in [5,6]])
 
         # raise exception if there is not enough leaveBalance for the leave duration

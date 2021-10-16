@@ -40,7 +40,7 @@ def main() -> None:
     print('-' * 80) 
     
     print('', '-' * 80,'After Setting Safe Management Percentage to 40','-' * 80, sep='\n') 
-    companySUSS.setSafeManagePercentage(40)
+    Company.setSafeManagePercentage(40)
     print(companySUSS)    
     print('-' * 80)
     
