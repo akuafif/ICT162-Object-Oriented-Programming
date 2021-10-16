@@ -12,3 +12,11 @@ class Manager(FullTimeEmployee):
             int: The starting leave balance.
         """
         return type(self)._LEAVE_ENTITLEMENT
+    
+    def __str__(self) -> str:
+        """ 
+        Returns:
+            str: content of the object. 
+        """
+        return f'Manager ' + super().__str__() 
+     

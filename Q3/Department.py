@@ -103,7 +103,7 @@ class Department:
             str: content of the object. 
         """
         printStr = f'Department {self.__name}\tEssential Services: {"Yes" if self.__essentialServices else "No"}'
-        printStr += '\n' + f'Manager ' + str(self.__manager)
+        printStr += '\n' + str(self.__manager)
         for e in self.__employees:
             printStr += '\n' + str(e)
         return printStr
