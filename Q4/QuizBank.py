@@ -74,7 +74,6 @@ class QuizBank:
         del self.__questions[self.__currentQuestion]
         return self.getNewQuestion()
     
-    
     def totalQuestionsAttemped(self) -> int:
         """ The number of question attempted. 
 

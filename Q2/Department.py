@@ -4,12 +4,12 @@ from Employee import Employee
 class Department:
     """ Department class is an abstract superclass that models one department. """
 
-    def __init__(self, name: str, manager: Manager, essentialServices: bool) -> None: 
+    def __init__(self, name: str, manager: Employee, essentialServices: bool) -> None: 
         """ Constructs all the necessary attributes for the Department object. 
 
         Args:
             name (str): name of the department.
-            manager (Manager): manager of the department.
+            manager (Employee): manager of the department.
             essentialServices (bool): True is department is an essential service. False otherwise.
         """
         self.__name = name
@@ -103,7 +103,7 @@ class Department:
             str: content of the object. 
         """
         printStr = f'Department {self.__name}\tEssential Services: {"Yes" if self.__essentialServices else "No"}'
-        printStr += '\n' + str(self.__manager)
+        printStr += f'\nManager' + str(self.__manager)
         for e in self.__employees:
             printStr += '\n' + str(e)
         return printStr
