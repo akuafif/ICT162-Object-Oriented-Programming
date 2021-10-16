@@ -7,7 +7,7 @@ class Leave:
     _NEXT_ID = 202100001
     
     def __init__(self, applicant: Employee, fromDate: datetime, toDate: datetime) -> None:
-        """ Creates a Leave object with the given parameter and returns as a Leave object.
+        """ Constructs all the necessary attributes for the Leave object.
 
         Args:
             applicant (Employee): The Employee object that is applying for the leave.
@@ -15,12 +15,9 @@ class Leave:
             toDate (datetime): The end date of the leave.
 
         Raises:
-            LeaveApplicationException: If leave request from-date falls on weekend.
+            LeaveApplicationException: If leave request from-Date falls on weekend.
             LeaveApplicationException: If leave request from-Date is after to-Date.
             LeaveApplicationException: If applicant's leave balance is lesser than leave duration.
-        
-        Returns:
-            Leave: The Leave object created with the given paramater.
         """
         
         self.__applicant = applicant
@@ -29,7 +26,7 @@ class Leave:
         
         # raise exception if fromDate is on weekend
         if self.__fromDate.strftime('%A') == 'Saturday' or self.__fromDate.strftime('%A') == 'Sunday':
-            raise LeaveApplicationException('Leave request should not have from-date on weekend')
+            raise LeaveApplicationException('Leave request should not have from-Date on weekend')
         
         # raise exception if from-Date is after to-Date
         if self.__fromDate > self.__toDate:
