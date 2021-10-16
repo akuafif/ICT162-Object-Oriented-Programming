@@ -28,7 +28,7 @@ class Leave:
         if self.__fromDate.strftime('%A') == 'Saturday' or self.__fromDate.strftime('%A') == 'Sunday':
             raise LeaveApplicationException('Leave request should not have from-Date on weekend')
         
-        # raise exception if from-Date is after to-Date
+        # raise exception if from-Date is before, or same as to-Date
         if self.__fromDate > self.__toDate:
             raise LeaveApplicationException('Leave request from-Date is after to-Date')
         
@@ -38,13 +38,13 @@ class Leave:
         # To get the amount of weekdays between fromDate and toDate
         # for loop from fromDate, enumerate the list of timedelta returned by the nested loop
         # nested for loop to create a list of timedelta(days) in range of daysApart(int) and return them 
-        self._duration = len([dt.weekday() for dt in (self.__fromDate + timedelta(days) for days in range(daysApart)) if not dt.weekday() in [5,6]])
+        self.__duration = len([dt.weekday() for dt in (self.__fromDate + timedelta(days) for days in range(daysApart)) if not dt.weekday() in [5,6]])
 
         # raise exception if there is not enough leaveBalance for the leave duration
-        if self.__applicant.leaveBalance - self._duration < 0:
+        if self.__applicant.leaveBalance - self.__duration < 0:
             raise LeaveApplicationException("Applicant's leave balance is lesser than leave duration")
 
-        self._status = 'Approved'
+        self.__status = 'Approved'
            
         # _NEXT_ID increment after approved
         self.__leaveRequestId = type(self)._NEXT_ID
@@ -93,7 +93,7 @@ class Leave:
         Returns:
             int: The amount of days for the leave duration.
         """
-        return self._duration
+        return self.__duration
     
     @property
     def status(self) -> str:
@@ -102,7 +102,7 @@ class Leave:
         Returns:
             str: The leave status.
         """
-        return self._status
+        return self.__status
     
     @status.setter
     def status(self, newStatus: str) -> None:
@@ -111,7 +111,7 @@ class Leave:
         Args:
             newStatus (str): The new status of the leave.
         """
-        self._status = newStatus
+        self.__status = newStatus
         
     def __str__(self) -> str:
         """ 
@@ -121,8 +121,8 @@ class Leave:
         return f'Leave Request ID: {self.__leaveRequestId}\n' \
                f'ID: {self.__applicant.employeeId}\t\tName: {self.__applicant.name}\n' \
                f'From: {self.__fromDate.strftime("%d %b %y")} to {self.__toDate.strftime("%d %b %y")}\n' \
-               f'Duration: {self._duration} days\n' \
-               f'Status: {self._status}'
+               f'Duration: {self.__duration} days\n' \
+               f'Status: {self.__status}'
 
 class LeaveApplicationException(Exception):
     """ LeaveApplicationException is a subclass of the Exception class. 
