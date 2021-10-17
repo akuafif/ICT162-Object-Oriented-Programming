@@ -50,7 +50,7 @@ class Department:
             if employeeId == e.employeeId:
                 return e
         return None
-    
+
     def addEmployee(self, newEmployee: Employee) -> bool:
         """ Adds an employee into the department. \n
         ONLY part-time and full-time employee is added to the department's employee list.
@@ -103,7 +103,7 @@ class Department:
             str: content of the object. 
         """
         printStr = f'Department {self.__name}\tEssential Services: {"Yes" if self.__essentialServices else "No"}'
-        printStr += f'\nManager' + str(self.__manager)
+        printStr += f'\nManager ' + str(self.__manager)
         for e in self.__employees:
             printStr += '\n' + str(e)
         return printStr

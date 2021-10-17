@@ -66,7 +66,7 @@ class QuizGUI(Tk):
         positionRight = int(self.winfo_screenwidth()/2 - windowWidth/2)
         positionDown = int(self.winfo_screenheight()/2 - windowHeight)
         
-        # Positions the window in the center of the page.
+        # Positions the window in the center of the page
         self.geometry("+{}+{}".format(positionRight, positionDown)) 
         
     def displayOutput(self, message: str, clearAll: bool) -> None:
@@ -104,7 +104,7 @@ class QuizGUI(Tk):
             self.__btnSubmit.configure(state = DISABLED)
             self.__btnNext.configure(state = NORMAL)
 
-            # Python interpreter is in C. Using self.__answer.get(), 1 = true, 0 = false
+            # Python interpreter written in C. Using self.__answer.get(), 1 = true, 0 = false
             if self.__questionBank.checkCureentAnswer(bool(self.__answer.get())):
                 self.displayOutput(f'Question {self.__questionBank.totalQuestionsAttemped()} correct!', False)
             else:

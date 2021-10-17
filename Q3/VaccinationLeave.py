@@ -17,7 +17,7 @@ class VaccinationLeave(Leave):
         
         # Raise exception if both date are not the same
         if fromDate != toDate:
-            raise LeaveApplicationException('From-date not the same as to-Date')
+            raise LeaveApplicationException('from-Date not the same as to-Date')
         
         # Raise exception if both date are before 30 Dec 2020
         if not fromDate > datetime(year = 2020, month = 12, day = 30):

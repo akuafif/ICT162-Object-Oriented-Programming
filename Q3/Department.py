@@ -4,7 +4,7 @@ from Employee import Employee
 class Department:
     """ Department class is an abstract superclass that models one department. """
 
-    def __init__(self, name: str, manager: Manager, essentialServices: bool) -> None: 
+    def __init__(self, name: str, manager: Employee, essentialServices: bool) -> None: 
         """ Constructs all the necessary attributes for the Department object. 
 
         Args:
@@ -50,7 +50,7 @@ class Department:
             if employeeId == e.employeeId:
                 return e
         return None
-    
+
     def addEmployee(self, newEmployee: Employee) -> bool:
         """ Adds an employee into the department. \n
         ONLY part-time and full-time employee is added to the department's employee list.
