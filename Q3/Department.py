@@ -53,7 +53,7 @@ class Department:
     
     def addEmployee(self, newEmployee: Employee) -> bool:
         """ Adds an employee into the department. \n
-        ONLY accepts part-time and full-time employee as the parameter.
+        ONLY part-time and full-time employee is added to the department's employee list.
 
         Args:
             newEmployee (Employee): Employee object to be added into the department.
@@ -61,7 +61,7 @@ class Department:
         Returns:
             bool: True if the operation is successfully, otherwise False.
         """
-        if self.searchEmployee(newEmployee.employeeId) == None and type(newEmployee) != type(Manager):
+        if self.searchEmployee(newEmployee.employeeId) == None and type(newEmployee) != type(self.__manager):
             self.__employees.append(newEmployee)
             return True
         return False

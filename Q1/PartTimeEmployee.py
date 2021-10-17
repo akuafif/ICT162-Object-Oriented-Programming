@@ -33,4 +33,4 @@ class PartTimeEmployee(Employee):
         Returns:
             str: content of the object. 
         """
-        return super().__str__() + f' Hours/Week: {self.__hoursPerWeek}' 
+        return super().__str__() + f'\tHours/Week: {self.__hoursPerWeek}' 

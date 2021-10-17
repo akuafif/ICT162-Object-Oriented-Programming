@@ -51,36 +51,33 @@ def menu() -> int:
     """ Prints the main menu and returns the selection number.
 
     Returns:
-        int: The option that the user choose.
+        int: the option that the user choose.
     """
     while True:
-        try:
-            print('Menu\n'
-                  '======\n'
-                  '1. Apply Leave\n'
-                  '2. Cancel Leave\n'
-                  '3. Display Employee Leave Profile\n'
-                  '4. Daily Movement Update\n'
-                  '5. Update Safe Management Measure Percentage\n'
-                  "6. Display Departments' SMM status\n"
-                  '0. Exit')
-            choice = convertInputToInt('Enter option: ')
-            print()
-            if choice != None and 0 <= choice <= 6:
-                return choice
-            else:
-                print('Please enter a valid selection number\n')
-        except:    
+        print('Menu\n'
+                '======\n'
+                '1. Apply Leave\n'
+                '2. Cancel Leave\n'
+                '3. Display Employee Leave Profile\n'
+                '4. Daily Movement Update\n'
+                '5. Update Safe Management Measure Percentage\n'
+                "6. Display Departments' SMM status\n"
+                '0. Exit')
+        choice = convertInputToInt('Enter option: ')
+        print()
+        if choice != None and 0 <= choice <= 6:
+            return choice
+        else:
             print('Please enter a valid selection number\n')
 
 def inputDate(message: str) -> datetime:
     """ Validate user input to be in datetime format and returns it.
 
     Args:
-        message (str): The message to display upon calling input().
+        message (str): message to display upon calling input().
 
     Returns:
-        datetime: The datetime object of the user inputted date.
+        datetime: datetime object of the user inputted date.
     """
     while True:
         try:
@@ -94,14 +91,13 @@ def convertInputToInt(message: str) -> int:
     """ Converts user inputs into int type. If input is not digits, returns None.
 
     Args:
-        message (str): The message to display upon calling input().
+        message (str): message to display upon calling input().
 
     Returns:
-        int: The value of user input in int type if valid, otherwise None.
+        int: value of user input in int type if valid, otherwise None.
     """
     try:
-        userInput = input(message)
-        return int(userInput)
+        return int(input(message))
     except ValueError:
         return None
 
@@ -109,12 +105,12 @@ def getEmployeeAndDept(company: Company, employeeId: int, dept: str) -> Union[Em
     """ Retrieves the Employment and Department object from a Company Object.
 
     Args:
-        company (Company): The Company Object to retrieve from.
-        employeeId (int): The employee's ID to be search with.
-        dept (str): The department name to be search with.
+        company (Company): Company Object to retrieve from.
+        employeeId (int): employee's ID to be search with.
+        dept (str): department name to be search with.
 
     Returns:
-        Union[Employee, Department]: The employee and department object retrieved by the search.
+        Union[Employee, Department]: employee and department object retrieved by the search. If either not found, return Union[None, None].
     """
     employeeDept = company.searchDepartment(dept)
     if employeeDept == None:
@@ -131,12 +127,12 @@ def applyLeave(company: Company, applicantId: int, dept: str) -> None:
     """ Adds a Leave object to the a Company object record.
 
     Args:
-        company (Company): The Company object to be added into.
-        applicantId (int): The applicant's ID of the leave request.
-        dept (str): The department name that the applicant belongs to.
+        company (Company): Company object to be added into.
+        applicantId (int): applicant's ID of the leave request.
+        dept (str): department name that the applicant belongs to.
 
     Raises:
-        LeaveApplicationException: Not allow to apply more than 2 vaccination leaves within same year.
+        LeaveApplicationException: not allow to apply more than 2 vaccination leaves within same year.
     """
     if applicantId != None:    
         applicant, employeeDept = getEmployeeAndDept(company,applicantId,dept)
@@ -151,17 +147,14 @@ def applyLeave(company: Company, applicantId: int, dept: str) -> None:
                 else: 
                     print('Invalid input, please re-try')
                     
-            try:
-                if vacLeave == 'Y':
-                    if company.getVaccinationLeaveCount(applicantId, fromDate.year) >= 2:
-                        raise LeaveApplicationException('Not allow to apply more than 2 vaccination leaves within same year') 
-                    newLeave = VaccinationLeave(applicant,fromDate,toDate)
-                else:
-                    newLeave = Leave(applicant,fromDate,toDate)
-                company.addLeave(newLeave)
-                print(f'Leave Request Added!!\n{newLeave}')
-            except LeaveApplicationException as e:
-                print(e)
+            if vacLeave == 'Y':
+                if company.getVaccinationLeaveCount(applicantId, fromDate.year) >= 2:
+                    raise LeaveApplicationException('Not allow to apply more than 2 vaccination leaves within same year') 
+                newLeave = VaccinationLeave(applicant,fromDate,toDate)
+            else:
+                newLeave = Leave(applicant,fromDate,toDate)
+            company.addLeave(newLeave)
+            print(f'Leave Request Added!!\n{newLeave}')
     else:
         print('Invalid employee ID input, please re-try')
             
@@ -174,11 +167,8 @@ def cancelLeave(company: Company, employeeId: int, leaveId: int) -> None:
         leaveId (int): The leave ID of the leave request.
     """
     if employeeId != None:
-        try:
-            company.cancelLeave(employeeId,leaveId)
-            print(f'Leave request {leaveId} cancelled successfully')
-        except LeaveApplicationException as e:
-            print(e)
+        company.cancelLeave(employeeId,leaveId)
+        print(f'Leave request {leaveId} cancelled successfully')
     else:
         print('Invalid employee ID input, please re-try')
 
@@ -215,7 +205,6 @@ def dailyMovementUpdate(company: Company, employeeId: int, dept:str) -> None:
         applicant, employeeDept = getEmployeeAndDept(company,employeeId,dept)
         if applicant != None and employeeDept != None:
             print(f'Currect work from home status is {applicant.workFromHome}')
-
             while True:
                 change = input('Change the status? (Y/N): ').upper()
                 if change == 'Y':
@@ -232,7 +221,6 @@ def updateSMMPercentage() -> None:
     """ Updates the Safe Management Measure (0% - 100%) """
     
     print(f'Current Safe Mangement Measure % is {Company.getSafeManagePercentage():.1f}')
-    
     while True:
         try:
             newPercentage = float(input('Enter new Safe Management Measure %: '))
@@ -242,7 +230,6 @@ def updateSMMPercentage() -> None:
                 raise ValueError
         except ValueError:
             print('Sorry, please re-enter within range (0, 100)')
-
     Company.setSafeManagePercentage(newPercentage)
     print(f'Safe Mangement Measure % updated to {newPercentage:.1f}')
 
@@ -254,13 +241,17 @@ def main() -> None:
     
     while True:
         choice = menu()
-        if   choice == 0: break
-        elif choice == 1: applyLeave(companySUSS, convertInputToInt('Enter Employee ID: '), input("Enter employee's department: "))
-        elif choice == 2: cancelLeave(companySUSS, convertInputToInt('Enter employee ID: '), convertInputToInt('Enter leave request ID to cancel: '))
-        elif choice == 3: displayEmployeeLeaveProfile(companySUSS, convertInputToInt('Enter employee ID: '), input("Enter employee's department: "))
-        elif choice == 4: dailyMovementUpdate(companySUSS, convertInputToInt('Enter employee ID: '), input("Enter employee's department: "))
-        elif choice == 5: updateSMMPercentage()
-        elif choice == 6: print(companySUSS)
+        try:
+            if   choice == 0: break
+            elif choice == 1: applyLeave(companySUSS, convertInputToInt('Enter Employee ID: '), input("Enter employee's department: "))
+            elif choice == 2: cancelLeave(companySUSS, convertInputToInt('Enter employee ID: '), convertInputToInt('Enter leave request ID to cancel: '))
+            elif choice == 3: displayEmployeeLeaveProfile(companySUSS, convertInputToInt('Enter employee ID: '), input("Enter employee's department: "))
+            elif choice == 4: dailyMovementUpdate(companySUSS, convertInputToInt('Enter employee ID: '), input("Enter employee's department: "))
+            elif choice == 5: updateSMMPercentage()
+            elif choice == 6: print(companySUSS)
+        except LeaveApplicationException as e:
+            # Print any LeaveApplicationException error message that was captured in this try block
+            print(e)
         print()
 
 if __name__ == '__main__':

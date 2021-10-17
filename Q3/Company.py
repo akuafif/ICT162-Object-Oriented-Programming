@@ -89,7 +89,6 @@ class Company:
         """
         # Compares for any approved leave overlap for the applicant
         if self.overlappingLeave(leave.applicant.employeeId, leave.fromDate, leave.toDate):
-            del leave
             raise LeaveApplicationException('Leave application cannot overlaps with approved leave')
         
         # To add to employee's leave list, adjust leave and set WFH = True if the leave include today()
@@ -141,6 +140,8 @@ class Company:
         leaveList = self.getLeave(employeeId)
         for l in leaveList:
             if l.status == 'Approved':
+                # compare the latest two fromDate and earliest two toDate and subtract them
+                # if positive, means its overlap
                 compareStart = max(l.fromDate, fromDate)
                 compareEnd = min(l.toDate, toDate)     
                 if ((compareEnd-compareStart).days + 1) > 0 :

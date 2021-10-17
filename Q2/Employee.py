@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 class Employee(ABC):
     """ Employee class is an abstract superclass that models one employee. """
     
-    def __init__(self, employeeId : int, name : str, workFromHome : bool) -> None:
+    def __init__(self, employeeId: int, name: str, workFromHome: bool) -> None:
         """ Constructs all the necessary attributes for the Employee object. 
 
         Args:
@@ -44,7 +44,7 @@ class Employee(ABC):
         return self.__workFromHome 
         
     @workFromHome.setter
-    def workFromHome(self, atHome : bool) -> None: 
+    def workFromHome(self, atHome: bool) -> None: 
         """ Setter method for employee workFromHome status.
 
         Args:
@@ -74,4 +74,4 @@ class Employee(ABC):
         Returns:
             str: content of the object. 
         """
-        return f'ID: {self.__employeeId}\tName: {self.__name}\tLeave Balance: {self.__leaveBalance}\tWFH: {"Yes" if self.__workFromHome else "No "}\t'
+        return f'ID: {self.__employeeId}\tName: {self.__name}\tLeave Balance: {self.__leaveBalance}\tWFH: {"Yes" if self.__workFromHome else "No"}'

@@ -7,10 +7,8 @@ class QuizGUI(Tk):
     """ MainWindow is a class that contains all the UI functionality and logic of the quiz """
     def __init__(self) -> None:
         Tk.__init__(self)
-        
         self.createWidgets()
         self.spawnMiddleScreen()
-        
         self.mainloop()
 
     def createWidgets(self) -> None:
@@ -25,8 +23,8 @@ class QuizGUI(Tk):
         # Creating radio buttons for answers
         self.__answer = IntVar()
         self.__answer.set(2)
-        self.__rbtnTrue = Radiobutton(self.__tf, text='Option 1', padx = 20, variable=self.__answer, value=1)
-        self.__rbtnFalse = Radiobutton(self.__tf, text='Option 2', padx = 20, variable=self.__answer, value=0)
+        self.__rbtnTrue = Radiobutton(self.__tf, text='Option 1', variable=self.__answer, value=1)
+        self.__rbtnFalse = Radiobutton(self.__tf, text='Option 2', variable=self.__answer, value=0)
 
         # Creating a Frame to be placed inside self.__tf
         # This frame is required to create more columns for the Submit and Next button
@@ -46,12 +44,12 @@ class QuizGUI(Tk):
         self.__sclOutput.config(state = DISABLED)
         
         # Positioning widget in the grid
-        self.__btnStart.grid(row=0,column=0, padx=5, pady=5)
-        self.__lblQuestion.grid(row=1,column=0, padx=5)
-        self.__rbtnTrue.grid(row=2,column=0, padx=5, pady=2)
-        self.__rbtnFalse.grid(row=3,column=0, padx=5, pady=2)
-        self.__bf.grid(row=4,column=0)
-        self.__sclOutput.grid(row=5,column=0, padx=5, pady=5)
+        self.__btnStart.grid(row=0,column=0, pady=5)
+        self.__lblQuestion.grid(row=1,column=0, pady=2)
+        self.__rbtnTrue.grid(row=2,column=0, pady=2)
+        self.__rbtnFalse.grid(row=3,column=0, pady=2)
+        self.__bf.grid(row=4,column=0, pady=2)
+        self.__sclOutput.grid(row=5,column=0, pady=5)
         
         # Pack them and set resizable to false
         self.__tf.pack()
@@ -69,21 +67,21 @@ class QuizGUI(Tk):
         positionDown = int(self.winfo_screenheight()/2 - windowHeight)
         
         # Positions the window in the center of the page.
-        self.geometry("+{}+{}".format(positionRight, positionDown))  
+        self.geometry("+{}+{}".format(positionRight, positionDown)) 
         
     def displayOutput(self, message: str, clearAll: bool) -> None:
         """ Prints the message to the scrollable text widget
 
         Args:
             message (str): the string to print
-            clearAll (bool): True to clear the textbox, otherwise false
+            clearAll (bool): True to clear the textbox before displaying the message, otherwise false
         """
         self.__sclOutput.config(state = NORMAL)
         if clearAll:
             self.__sclOutput.delete(1.0,END)
         self.__sclOutput.insert(END, message + '\n')
         self.__sclOutput.see(END)
-        self.__sclOutput.config(state = DISABLED)
+        self.__sclOutput.config(state = DISABLED) 
 
     def startQuiz(self) -> None:
         """ Starts the quiz and retrieve a random question.\nDisable the Start & Next button and enable Submit button. """
@@ -105,8 +103,8 @@ class QuizGUI(Tk):
         if str(self.__answer.get()) in '01':
             self.__btnSubmit.configure(state = DISABLED)
             self.__btnNext.configure(state = NORMAL)
-            
-            # Python is written in C. self.__answer.get() if 1 = true, 0 = false
+
+            # Python interpreter is in C. Using self.__answer.get(), 1 = true, 0 = false
             if self.__questionBank.checkCureentAnswer(bool(self.__answer.get())):
                 self.displayOutput(f'Question {self.__questionBank.totalQuestionsAttemped()} correct!', False)
             else:

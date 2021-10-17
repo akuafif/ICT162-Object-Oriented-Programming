@@ -33,4 +33,4 @@ class FullTimeEmployee(Employee):
         Returns:
             str: content of the object. 
         """
-        return super().__str__() + f' Grade: {self.__grade}'
+        return super().__str__() + f'\tGrade: {self.__grade}'
