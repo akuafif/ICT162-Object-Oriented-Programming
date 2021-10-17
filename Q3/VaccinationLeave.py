@@ -2,6 +2,7 @@ from Leave import Leave, Employee, datetime, LeaveApplicationException
 
 class VaccinationLeave(Leave):
     """ VaccinationLeave class is a subclass of Leave. """
+    
     def __init__(self, applicant: Employee, fromDate: datetime, toDate: datetime) -> None:
         """ Constructs all the necessary attributes for the VaccinationLeave object.
 
@@ -29,7 +30,7 @@ class VaccinationLeave(Leave):
     def __str__(self) -> str:
         """ 
         Returns:
-            str: the content of the object. 
+            str: content of the object. 
         """
         return f'Leave Request ID: {super().leaveRequestID}\n' \
                f'ID: {super().applicant.employeeId}\t\tName: {super().applicant.name}\n' \

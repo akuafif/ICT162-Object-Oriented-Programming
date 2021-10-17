@@ -2,7 +2,7 @@ from Employee import Employee
 from datetime import datetime, timedelta
 
 class Leave:
-    """ A class to represent a leave request. """
+    """ Leave class is a class that models one Leave. """
     
     _NEXT_ID = 202100001
     
@@ -56,7 +56,7 @@ class Leave:
         """ Getter method for the leave request ID.
 
         Returns:
-            int: The leave request ID.
+            int: leave request ID.
         """
         return self.__leaveRequestId
     
@@ -74,7 +74,7 @@ class Leave:
         """ Getter method for the starting date of the leave.
 
         Returns:
-            datetime: The starting date of the leave.
+            datetime: starting date of the leave.
         """
         return self.__fromDate
     
@@ -83,7 +83,7 @@ class Leave:
         """ Getter method for the end date of the leave.
 
         Returns:
-            datetime: The end date of the leave.
+            datetime: end date of the leave.
         """
         return self.__toDate
     
@@ -92,7 +92,7 @@ class Leave:
         """ Getter method for the leave duration in days.
 
         Returns:
-            int: The amount of days for the leave duration.
+            int: amount of days for the leave duration.
         """
         return self.__duration
     
@@ -101,7 +101,7 @@ class Leave:
         """ Getter method for the leave status.
 
         Returns:
-            str: The leave status.
+            str: leave status.
         """
         return self.__status
     
@@ -110,14 +110,14 @@ class Leave:
         """ Setter method for the leave status.
 
         Args:
-            newStatus (str): The new status of the leave.
+            newStatus (str): new status of the leave.
         """
         self.__status = newStatus
         
     def __str__(self) -> str:
         """ 
         Returns:
-            str: The content of the object. 
+            str: content of the object. 
         """
         return f'Leave Request ID: {self.__leaveRequestId}\n' \
                f'ID: {self.__applicant.employeeId}\t\tName: {self.__applicant.name}\n' \

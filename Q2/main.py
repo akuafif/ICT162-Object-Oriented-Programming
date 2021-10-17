@@ -9,7 +9,7 @@ def insertData(company : Company) -> None:
     """ Intialising the Department and Employee objects based on Q2c(i) requirements.
 
     Args:
-        company (Company): The Company object to be associated with the intialised data.
+        company (Company): Company object to be associated with the intialised data.
     """
     deptIT = Department('IT Helpdesk', Manager(106, 'Tom', False, 4), True)
     deptMarketing = Department('Marketing', Manager(201, 'Neil', False, 4), False)

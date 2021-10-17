@@ -9,7 +9,7 @@ def insertData(company : Company) -> None:
     """ Initialise all the data based on Q3d(i).
 
     Args:
-        companySUSS (Company): The Company object to be initialised with the data.
+        companySUSS (Company): Company object to be initialised with the data.
     """
     deptIT = Department('IT Helpdesk', Manager(106, 'Tom', False, 4), True)
     deptMarketing = Department('Marketing', Manager(201, 'Neil', False, 4), False)
@@ -162,9 +162,9 @@ def cancelLeave(company: Company, employeeId: int, leaveId: int) -> None:
     """ Cancels an approved leave request based on employeeId and leaveRequestId.
 
     Args:
-        company (Company): The Company object that the employee belongs to.
-        employeeId (int): The applicant's ID of the leave request.
-        leaveId (int): The leave ID of the leave request.
+        company (Company): Company object that the employee belongs to.
+        employeeId (int): applicant's ID of the leave request.
+        leaveId (int): leave ID of the leave request.
     """
     if employeeId != None:
         company.cancelLeave(employeeId,leaveId)
@@ -176,9 +176,9 @@ def displayEmployeeLeaveProfile(company: Company, employeeId: int, dept: str) ->
     """ isplays all the employee's leave profile in the Company object
 
     Args:
-        company (Company): The Company object to retrieve from.
-        employeeId (int): The employee's ID to search with.
-        dept (str): The department name that the applicant belongs to.
+        company (Company): Company object to retrieve from.
+        employeeId (int): employee's ID to search with.
+        dept (str): department name that the applicant belongs to.
     """
     if employeeId != None:
         applicant, employeeDept = getEmployeeAndDept(company,employeeId,dept)
@@ -197,9 +197,9 @@ def dailyMovementUpdate(company: Company, employeeId: int, dept:str) -> None:
     """ Shows the WFH status of an employee. Prompts if user want to change the status
 
     Args:
-        company (Company): The Company object to retrieve from.
-        employeeId (int): The employee's ID to search with.
-        dept (str): The department name that the applicant belongs to.
+        company (Company): Company object to retrieve from.
+        employeeId (int): employee's ID to search with.
+        dept (str): department name that the applicant belongs to.
     """
     if employeeId != None:
         applicant, employeeDept = getEmployeeAndDept(company,employeeId,dept)

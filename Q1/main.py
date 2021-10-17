@@ -6,7 +6,7 @@ from Manager import Manager, FullTimeEmployee
 def printEmployees(employees: list) -> None:
     """ Prints the employee list.\n
     Args:
-        employees ([list]): The list that holds all the Employee object. 
+        employees ([list]): list that holds all the Employee object. 
     """
     for e in employees:
         print(e)
@@ -14,7 +14,7 @@ def printEmployees(employees: list) -> None:
 def rotateWFH(employees: list) -> None:
     """ Rotate all the employee work from home status.\n
     Args:
-        employees ([list]): The list that holds all the Employee object. 
+        employees ([list]): list that holds all the Employee object. 
     """
     for e in employees:
         e.workFromHome = not e.workFromHome
@@ -23,7 +23,7 @@ def insertData() -> list:
     """ Initialise all the Employee object based on Q1d(i).
 
     Returns:
-        list: The list that holds all the Employee object. 
+        list: list that holds all the Employee object. 
     """
     employees = []
     employees.append(FullTimeEmployee(101, 'Jeff', False, 3))

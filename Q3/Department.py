@@ -2,7 +2,7 @@ from Manager import Manager
 from Employee import Employee
 
 class Department:
-    """ Department class is an abstract superclass that models one department. """
+    """ Department class is a class that models one department. """
 
     def __init__(self, name: str, manager: Employee, essentialServices: bool) -> None: 
         """ Constructs all the necessary attributes for the Department object. 

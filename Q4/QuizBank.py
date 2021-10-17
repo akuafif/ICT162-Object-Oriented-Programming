@@ -1,7 +1,7 @@
 from random import randint
 
 class QuizBank:
-    """ A Class that is reposible to store any quiz related data """
+    """ QuizBank class is a class that models one Quiz. """
     def __init__(self) -> None:
         """ Constructor for QuizBank object """
         self.__currentQuestion = 0

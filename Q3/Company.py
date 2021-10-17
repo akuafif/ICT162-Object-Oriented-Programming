@@ -4,7 +4,7 @@ from datetime import datetime
 from Department import Department
 
 class Company:
-    """ A class to represent a company. """
+    """ Company class is a class that models one Company. """
 
     _SAFE_MANAGEMENT_PERCENTAGE = 50.0
     
