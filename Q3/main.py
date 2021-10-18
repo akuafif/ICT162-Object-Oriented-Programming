@@ -173,7 +173,7 @@ def cancelLeave(company: Company, employeeId: int, leaveId: int) -> None:
         print('Invalid employee ID input, please re-try')
 
 def displayEmployeeLeaveProfile(company: Company, employeeId: int, dept: str) -> None:
-    """ isplays all the employee's leave profile in the Company object
+    """ Displays all the employee's leave profile in the Company object
 
     Args:
         company (Company): Company object to retrieve from.
@@ -204,7 +204,7 @@ def dailyMovementUpdate(company: Company, employeeId: int, dept:str) -> None:
     if employeeId != None:
         applicant, employeeDept = getEmployeeAndDept(company,employeeId,dept)
         if applicant != None and employeeDept != None:
-            print(f'Currect work from home status is {applicant.workFromHome}')
+            print(f'Current work from home status is {applicant.workFromHome}')
             while True:
                 change = input('Change the status? (Y/N): ').upper()
                 if change == 'Y':

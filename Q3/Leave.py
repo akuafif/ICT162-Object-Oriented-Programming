@@ -65,7 +65,7 @@ class Leave:
         """ Getter method for the applicant.
 
         Returns:
-            Employee: Applicant in Employee object
+            Employee: applicant in Employee object
         """
         return self.__applicant
     

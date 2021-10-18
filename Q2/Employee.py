@@ -21,7 +21,7 @@ class Employee(ABC):
         """ Getter method for the employee's ID.
 
         Returns:
-            int: id of the employee. 
+            str: employee's name
         """
         return self.__employeeId
     
@@ -52,6 +52,15 @@ class Employee(ABC):
         """
         self.__workFromHome = atHome
         
+    @property
+    def leaveBalance(self) -> int:
+        """ Getter method for employee's leave balance.
+
+        Returns:
+            int: days of leave left in employee's leave balance
+        """
+        return self.__leaveBalance
+    
     @abstractmethod
     def getLeaveEntitlement(self) -> int:
         """ Returns the leave entitlement for employees.

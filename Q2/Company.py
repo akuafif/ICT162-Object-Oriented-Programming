@@ -1,7 +1,7 @@
 from Department import Department
 
 class Company:
-    """ Company class is a classthat models one company. """
+    """ Company class is a class that models one company. """
     
     _SAFE_MANAGEMENT_PERCENTAGE = 50.0
     

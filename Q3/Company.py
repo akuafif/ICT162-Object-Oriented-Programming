@@ -149,7 +149,7 @@ class Company:
         return False
     
     def getVaccinationLeaveCount(self, employeeId: int, year: int) -> int:
-        """ Get the total number of approved vaccination leave matching the employee ID for the given year.
+        """ Get the total number of days from all approved vaccination leave matching the employee ID for the given year.
 
         Args:
             employeeId (int): id of the employee to be search with.
