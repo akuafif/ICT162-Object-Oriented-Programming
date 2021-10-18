@@ -7,9 +7,9 @@ class VaccinationLeave(Leave):
         """ Constructs all the necessary attributes for the VaccinationLeave object.
 
         Args:
-            applicant (Employee): The Employee object that is applying for the leave.
-            fromDate (datetime): The starting date of the leave.
-            toDate (datetime): The end date of the leave.
+            applicant (Employee): Employee object that is applying for the leave.
+            fromDate (datetime): starting date of the leave.
+            toDate (datetime): end date of the leave.
 
         Raises:
             LeaveApplicationException: if from-Date is not same as to-Date

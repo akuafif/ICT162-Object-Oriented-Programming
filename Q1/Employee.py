@@ -57,7 +57,7 @@ class Employee(ABC):
         """ Getter method for employee's leave balance.
 
         Returns:
-            int: days of leave left in employee's leave balance
+           int: days of leave left in employee's leave balance
         """
         return self.__leaveBalance
     

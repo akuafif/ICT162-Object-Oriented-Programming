@@ -10,9 +10,9 @@ class Leave:
         """ Constructs all the necessary attributes for the Leave object.
 
         Args:
-            applicant (Employee): The Employee object that is applying for the leave.
-            fromDate (datetime): The starting date of the leave.
-            toDate (datetime): The end date of the leave.
+            applicant (Employee): Employee object that is applying for the leave.
+            fromDate (datetime): starting date of the leave.
+            toDate (datetime): end date of the leave.
 
         Raises:
             LeaveApplicationException: If leave request from-Date falls on weekend.

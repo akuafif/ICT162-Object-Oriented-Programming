@@ -21,7 +21,7 @@ class Employee(ABC):
         """ Getter method for the employee's ID.
 
         Returns:
-            str: employee's name
+            int: id of the employee. 
         """
         return self.__employeeId
     
@@ -30,7 +30,7 @@ class Employee(ABC):
         """ Getter method for the employee's name.
 
         Returns:
-            str: days of leave entitlement.
+            str: employee's name
         """
         return self.__name
     
@@ -57,10 +57,10 @@ class Employee(ABC):
         """ Getter method for employee's leave balance.
 
         Returns:
-            int: days of leave left in employee's leave balance
+           int: days of leave left in employee's leave balance
         """
         return self.__leaveBalance
-    
+        
     @abstractmethod
     def getLeaveEntitlement(self) -> int:
         """ Returns the leave entitlement for employees.

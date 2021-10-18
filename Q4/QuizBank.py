@@ -23,28 +23,28 @@ class QuizBank:
 
     @property
     def correctAnswers(self) -> bool:
-        """ Returns the amount of question answered correctly
+        """ Returns the amount of questions answered correctly
 
         Returns:
-            bool: amount of question answered correctly
+            bool: amount of questions answered correctly
         """
         return self.__correctAnswers 
     
     @property
     def questionsAttemped(self) -> int:
-        """ The number of question attempted. 
+        """ The number of questions attempted. 
 
         Returns:
-            int: number of question attempted
+            int: number of questions attempted
         """
         return self.__questionsAttemped 
     
     @property
     def totalQuestion(self) -> int:
-        """ Gets the total number of question.
+        """ Gets the total number of questions.
         
         Returns:
-            int: total number of question in the quiz
+            int: total number of questions in the quiz
         """
         return self.__totalQuestion 
 
@@ -52,7 +52,7 @@ class QuizBank:
         """ Returns a new question.
 
         Returns:
-            str: new question
+            str: a new question
         """
         self.__questionsAttemped += 1
         self.__currentQIndexPosition = randint(0, len(self.__questions)-1)
@@ -62,7 +62,7 @@ class QuizBank:
         """ Checks and compare the current question answer with the answer in argument.
 
         Args:
-            answer (bool): the answer to check with the correct answer
+            answer (bool): answer to check with the correct answer
 
         Returns:
             bool: True if answer is correct, otherwise False

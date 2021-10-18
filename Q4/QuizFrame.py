@@ -4,7 +4,7 @@ from tkinter.constants import DISABLED, NORMAL, END, WORD
 from QuizBank import QuizBank
 
 class QuizFrame(Frame):
-    """ QuizGUI is a subclass  of Frame class that contains all the UI functionality and logic of the quiz """
+    """ QuizGUI is a subclass of Frame class that contains all the UI functionality and logic of the quiz """
     def __init__(self, parent):
         Frame.__init__(self, parent)
         self.createWidgets()
@@ -42,7 +42,7 @@ class QuizFrame(Frame):
 
         # Creating a Scrollable Text widget Frame
         self.__frBodyScl = Frame(self)
-        self.__sclOutput = ScrolledText(self.__frBodyScl, width=50, height=7, wrap=WORD, state=NORMAL)
+        self.__sclOutput = ScrolledText(self.__frBodyScl, width=45, height=7, wrap=WORD, state=NORMAL)
         self.__sclOutput.insert(END, f'Click start to begin quiz.')
         self.__sclOutput.config(state = DISABLED)
         self.__sclOutput.grid(row=0,column=0)
@@ -54,11 +54,11 @@ class QuizFrame(Frame):
         self.__frBodyScl.grid(row=3,column=0, pady=5, padx=5)
         
     def displayOutput(self, message: str, clearAll: bool) -> None:
-        """ Prints the message to the scrollable text widget
+        """ Displays the message in the scrollable text widget
 
         Args:
-            message (str): the string to print
-            clearAll (bool): True to clear the textbox before displaying the message, otherwise false
+            message (str): the string to display in the scrollable text widget
+            clearAll (bool): True to clear the scrollable text widget before displaying the message, otherwise false
         """
         self.__sclOutput.config(state = NORMAL)
         if clearAll:
