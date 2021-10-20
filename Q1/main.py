@@ -2,14 +2,6 @@
 
 from PartTimeEmployee import PartTimeEmployee
 from Manager import Manager, FullTimeEmployee
-
-def printEmployees(employees: list) -> None:
-    """ Prints the employee list.\n
-    Args:
-        employees ([list]): list that holds all the Employee object. 
-    """
-    for e in employees:
-        print(e)
         
 def rotateWFH(employees: list) -> None:
     """ Rotate all the employee work from home status.\n
@@ -45,14 +37,14 @@ def main() -> None:
     """
     employees = insertData()
     
-    print('-' * 80,'Inital Data','-' * 80, sep='\n') 
-    printEmployees(employees)
+    print('-' * 80,'Inital Data','-' * 80, sep='\n')
+    print('\n'.join(str(e) for e in employees))
     print('-' * 80) 
 
     # Toggling all the employee status
     print('', '-' * 80,'After WFH toggle','-' * 80, sep='\n') 
     rotateWFH(employees)
-    printEmployees(employees)
+    print('\n'.join(str(e) for e in employees))
     print('-' * 80) 
     
 if __name__ == '__main__':

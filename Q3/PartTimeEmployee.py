@@ -15,7 +15,7 @@ class PartTimeEmployee(Employee):
             hoursPerWeek (int): hours per week worked by the employee.
         """
         super().__init__(employeeId,name,workFromHome)
-        self.__hoursPerWeek = hoursPerWeek
+        self._hoursPerWeek = hoursPerWeek
         super().adjustLeave(self.getLeaveEntitlement())
     
     def getLeaveEntitlement(self) -> int:
@@ -25,7 +25,7 @@ class PartTimeEmployee(Employee):
             int: days of leave entitlement.
         """
         for hrWorked, leave in type(self)._LEAVE_ENTITLEMENT.items():
-            if self.__hoursPerWeek <= hrWorked:
+            if self._hoursPerWeek <= hrWorked:
                 return leave
     
     def __str__(self) -> str:
@@ -33,4 +33,4 @@ class PartTimeEmployee(Employee):
         Returns:
             str: content of the object. 
         """
-        return super().__str__() + f'\tHours/Week: {self.__hoursPerWeek}' 
+        return super().__str__() + f'\tHours/Week: {self._hoursPerWeek}' 

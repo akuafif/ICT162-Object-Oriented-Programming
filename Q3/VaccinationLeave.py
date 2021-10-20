@@ -32,8 +32,8 @@ class VaccinationLeave(Leave):
         Returns:
             str: content of the object. 
         """
-        return f'Leave Request ID: {super().leaveRequestID}\n' \
-               f'ID: {super().applicant.employeeId}\t\tName: {super().applicant.name}\n' \
-               f'From: {super().fromDate.strftime("%d %b %y")} to {super().toDate.strftime("%d %b %y")}\n' \
-               f'Duration: {super().duration} day (vacination)\n' \
-               f'Status: {super().status}'
+        return f'Leave Request ID: {self._leaveRequestId}\n' \
+               f'ID: {self._applicant.employeeId}\t\tName: {self._applicant.name}\n' \
+               f'From: {self._fromDate.strftime("%d %b %y")} to {self._toDate.strftime("%d %b %y")}\n' \
+               f'Duration: {self._duration} day (vacination)\n' \
+               f'Status: {self._status}'

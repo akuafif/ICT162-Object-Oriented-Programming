@@ -31,21 +31,21 @@ def insertData(company : Company) -> None:
     company.addLeave(Leave(deptIT.searchEmployee(101),datetime(2021,6,30),datetime(2021,7,5)))
     company.addLeave(Leave(deptIT.searchEmployee(101),datetime(2021,7,15),datetime(2021,7,19)))
     company.addLeave(Leave(deptIT.searchEmployee(103),datetime(2021,6,29),datetime(2021,7,6)))
+    company.addLeave(VaccinationLeave(deptIT.searchEmployee(104),datetime(2021,6,30),datetime(2021,6,30)))
     company.addLeave(Leave(deptIT.searchEmployee(105),datetime(2021,6,30),datetime(2021,7,5)))
     company.addLeave(Leave(deptIT.searchEmployee(105),datetime(2021,7,7),datetime(2021,7,22)))
+    company.addLeave(VaccinationLeave(deptIT.searchEmployee(106),datetime(2021,6,30),datetime(2021,6,30)))
+    company.addLeave(VaccinationLeave(deptIT.searchEmployee(106),datetime(2021,7,30),datetime(2021,7,30)))
     company.addLeave(Leave(deptMarketing.searchEmployee(201),datetime(2021,6,30),datetime(2021,7,5)))
+    company.addLeave(VaccinationLeave(deptMarketing.searchEmployee(201),datetime(2021,7,6),datetime(2021,7,6)))
     company.addLeave(Leave(deptMarketing.searchEmployee(205),datetime(2021,6,30),datetime(2021,7,5)))
+    company.addLeave(VaccinationLeave(deptMarketing.searchEmployee(205),datetime(2021,7,30),datetime(2021,7,30)))
     company.addLeave(Leave(deptMarketing.searchEmployee(204),datetime(2021,6,30),datetime(2021,7,5)))
     company.addLeave(Leave(deptMarketing.searchEmployee(204),datetime(2021,7,7),datetime(2021,7,15)))
     company.addLeave(Leave(deptMarketing.searchEmployee(203),datetime(2021,6,30),datetime(2021,7,5)))
     company.addLeave(Leave(deptMarketing.searchEmployee(203),datetime(2021,7,9),datetime(2021,7,13)))
     company.addLeave(Leave(deptMarketing.searchEmployee(202),datetime(2021,7,5),datetime(2021,7,8)))
     company.addLeave(Leave(deptMarketing.searchEmployee(202),datetime(2021,7,13),datetime(2021,7,13)))
-    company.addLeave(VaccinationLeave(deptIT.searchEmployee(104),datetime(2021,6,30),datetime(2021,6,30)))
-    company.addLeave(VaccinationLeave(deptIT.searchEmployee(106),datetime(2021,6,30),datetime(2021,6,30)))
-    company.addLeave(VaccinationLeave(deptIT.searchEmployee(106),datetime(2021,7,30),datetime(2021,7,30)))
-    company.addLeave(VaccinationLeave(deptMarketing.searchEmployee(201),datetime(2021,7,30),datetime(2021,7,30)))
-    company.addLeave(VaccinationLeave(deptMarketing.searchEmployee(201),datetime(2021,7,6),datetime(2021,7,6)))
 
 def menu() -> int:
     """ Prints the main menu and returns the selection number.
@@ -65,7 +65,7 @@ def menu() -> int:
                 '0. Exit')
         choice = convertInputToInt('Enter option: ')
         print()
-        if choice != None and 0 <= choice <= 6:
+        if choice != None and 0 <= choice <= 7:
             return choice
         else:
             print('Please enter a valid selection number\n')
@@ -142,7 +142,7 @@ def applyLeave(company: Company, applicantId: int, dept: str) -> None:
             toDate = inputDate('Enter to-Date in dd/mm/yyyy: ')     
             while True:
                 vacLeave = input('Vaccination leave? (Y/N): ').upper()
-                if vacLeave == 'Y' or vacLeave == 'N': 
+                if vacLeave in 'YN': 
                     break
                 else: 
                     print('Invalid input, please re-try')

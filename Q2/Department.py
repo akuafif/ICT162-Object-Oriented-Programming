@@ -12,10 +12,10 @@ class Department:
             manager (Employee): manager of the department.
             essentialServices (bool): True is department is an essential service. False otherwise.
         """
-        self.__name = name
-        self.__employees = []
-        self.__manager = manager
-        self.__essentialServices = essentialServices
+        self._name = name
+        self._employees = []
+        self._manager = manager
+        self._essentialServices = essentialServices
         
     @property
     def name(self) -> str:
@@ -24,7 +24,7 @@ class Department:
         Returns:
             str: name of the department.
         """
-        return self.__name
+        return self._name
     
     @property
     def essentialServices(self) -> bool:
@@ -33,7 +33,7 @@ class Department:
         Returns:
             bool: True if essential service. Otherwise, False.
         """
-        return self.__essentialServices
+        return self._essentialServices
     
     def searchEmployee(self, employeeId: int) -> Employee:
         """ Search an employee by ID.
@@ -44,9 +44,9 @@ class Department:
         Returns:
             Employee: Employee object with the matching employeeId. Otherwise, None.
         """
-        if self.__manager.employeeId == employeeId:
-            return self.__manager
-        for e in self.__employees:
+        if self._manager.employeeId == employeeId:
+            return self._manager
+        for e in self._employees:
             if employeeId == e.employeeId:
                 return e
         return None
@@ -61,8 +61,8 @@ class Department:
         Returns:
             bool: True if the operation is successfully, otherwise False.
         """
-        if self.searchEmployee(newEmployee.employeeId) == None and type(newEmployee) != type(self.__manager):
-            self.__employees.append(newEmployee)
+        if self.searchEmployee(newEmployee.employeeId) == None and type(newEmployee) != Manager:
+            self._employees.append(newEmployee)
             return True
         return False
     
@@ -75,20 +75,18 @@ class Department:
         Returns:
             str: report of all the employees who are WFH and computes the percentage of employee WFH (including the manager).
         """
-        # Get the amount of employee working from home
-        workFromHome = 0
-        for e in self.__employees:
-            if e.workFromHome:
-                workFromHome += 1
+        # Get the amount of employees working from home
+        # True(bool) == 1(int). True + True = 2
+        workFromHome = sum(e.workFromHome for e in self._employees if e.workFromHome)
                 
         # Include the manager
-        workFromHome += 1 if self.__manager.workFromHome else 0
+        workFromHome += self._manager.workFromHome
         
         # Get percentage of employee working from home        
-        deptPercentageWFH = (workFromHome / (len(self.__employees) + 1) ) * 100
+        deptPercentageWFH = workFromHome / (len(self._employees) + 1) * 100
         
         # Checking for WFH requirement check
-        if self.__essentialServices:
+        if self._essentialServices:
             requirementCheck = 'exempted'
         elif deptPercentageWFH >= percentage:
             requirementCheck = 'passed requirement'
@@ -102,8 +100,7 @@ class Department:
         Returns:
             str: content of the object. 
         """
-        printStr = f'Department {self.__name}\tEssential Services: {"Yes" if self.__essentialServices else "No"}'
-        printStr += f'\nManager ' + str(self.__manager)
-        for e in self.__employees:
-            printStr += '\n' + str(e)
+        printStr = f'Department {self._name}\tEssential Services: {"Yes" if self._essentialServices else "No"}' +\
+                    f'\nManager {str(self._manager)}\n' +\
+                    '\n'.join(str(e) for e in self._employees)
         return printStr
