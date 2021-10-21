@@ -76,7 +76,7 @@ class Department:
             str: report of all the employees who are WFH and computes the percentage of employee WFH (including the manager).
         """
         # Get the amount of employees working from home
-        # True(bool) == 1(int). True + True = 2
+        # Using Sum(list) from for loop, as True(bool) == 1(int). True(1) + True(1) = 2
         workFromHome = sum(e.workFromHome for e in self._employees if e.workFromHome)
                 
         # Include the manager

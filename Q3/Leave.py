@@ -45,10 +45,9 @@ class Leave:
             raise LeaveApplicationException("Applicant's leave balance is lesser than leave duration")
 
         self._status = 'Approved'
-           
-        # _NEXT_ID increment after approved
-        # Using type(self) may delay the increment, accessing ClassName directly solves the increament delay
         self._leaveRequestId = Leave._NEXT_ID
+        
+        # Using Leave._NEXT_ID allows child class to increment the value, instead of type(self)
         Leave._NEXT_ID += 1
         
     @property
